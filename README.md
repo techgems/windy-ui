@@ -18,4 +18,4 @@ The types of components Windy UI currently has implemented are:
  - Tabs
  - Typography
 
-Feel free to browse around or ask me any questions directly about the project. I plan to make Windy UI reach maturity to a point that it can be more easily used the way other UI component libraries are used. But in the meantime this is what is done so far.
+Feel free to browse around or ask me any questions directly about the project. I plan to make Windy UI reach maturity to a point that it can be more easily used the way other UI component libraries are used. You can see the work done so far [Here](https://windy-ui.techgems.net/).
