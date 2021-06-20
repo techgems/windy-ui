@@ -1,0 +1,10 @@
+﻿<thead class="bg-gray-50">
+    <tr>
+        @ChildContent
+    </tr>
+</thead>
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+}

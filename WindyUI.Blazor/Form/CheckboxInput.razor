@@ -1,0 +1,25 @@
+﻿@inherits BaseInput<bool>
+
+<div class="flex items-start mb-4 @CssClass">
+    <div class="flex items-center h-5">
+        <input id="comments" name="@Id" type="checkbox" checked="@(Value)" @oninput="HandleInput" class="focus:ring-4 focus:ring-offset-0 focus:ring-primary-light  h-4 w-4 text-primary border-gray-300 rounded" />
+    </div>
+    <div class="ml-3 text-sm">
+        <label for="@Id" class="font-medium text-gray-700">@Label</label>
+        @if(!string.IsNullOrEmpty(Description))
+        {
+            <p class="text-gray-500">@Description</p>
+        }
+    </div>
+</div>
+@if(CanValidate) 
+{ 
+    <div class="text-danger text-sm mb-3">
+        <ValidationMessage For="@ValidationFor" />
+    </div>
+}
+
+@code {
+    [Parameter]
+    public string Description { get; set; } = "";
+}

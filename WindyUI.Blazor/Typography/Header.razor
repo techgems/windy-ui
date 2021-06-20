@@ -1,0 +1,84 @@
+﻿@switch(HeaderType)
+{
+    case HeaderTypes.H1:
+        <h1 class="@ComputedClass">@ChildContent</h1>
+        break;
+    case HeaderTypes.H2:
+        <h2 class="@ComputedClass">@ChildContent</h2>
+        break;
+    case HeaderTypes.H3:
+        <h3 class="@ComputedClass">@ChildContent</h3>
+        break;
+    case HeaderTypes.H4:
+        <h4 class="@ComputedClass">@ChildContent</h4>
+        break;
+    case HeaderTypes.H5:
+        <h5 class="@ComputedClass">@ChildContent</h5>
+        break;
+    case HeaderTypes.H6:
+        <h6 class="@ComputedClass">@ChildContent</h6>
+        break;
+}
+
+@code {
+    [Parameter]
+    public HeaderTypes HeaderType { get; set; }
+
+    [Parameter]
+    public HeaderWeight Weight { get; set; } = HeaderWeight.Semibold;
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public string CssClass { get; set; } = "";
+
+    private string ComputedClass
+    {
+        get
+        {
+            var typeClasses = "";
+            var weightClass = "";
+
+            switch(Weight)
+            {
+                case HeaderWeight.Medium:
+                    weightClass = "font-medium";
+                    break;
+                case HeaderWeight.Semibold:
+                    weightClass = "font-semibold";
+                    break;
+                case HeaderWeight.Bold:
+                    weightClass = "font-bold";
+                    break;
+                case HeaderWeight.ExtraBold:
+                    weightClass = "font-extrabold";
+                    break;
+            }
+
+            switch(HeaderType)
+            {
+                case HeaderTypes.H1:
+                    typeClasses = "text-6xl mb-6";
+                    break;
+                case HeaderTypes.H2:
+                    typeClasses = "text-5xl mb-5";
+                    break;
+                case HeaderTypes.H3:
+                    typeClasses = "text-4xl mb-5";
+                    break;
+                case HeaderTypes.H4:
+                    typeClasses = "text-3xl mb-4";
+                    break;
+                case HeaderTypes.H5:
+                    typeClasses = "text-2xl mb-3";
+                    break;
+                case HeaderTypes.H6:
+                    typeClasses = "text-xl mb-2";
+                    break;
+            }
+
+            return $"font-header {typeClasses} {weightClass} {CssClass}";
+        }
+    }
+}

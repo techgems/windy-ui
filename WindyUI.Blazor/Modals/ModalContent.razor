@@ -1,0 +1,18 @@
+﻿<div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+    @ChildContent
+</div>
+
+@code {
+    [CascadingParameter]
+    private ModalBase? Parent { get; set; }
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    protected override void OnInitialized()
+    {
+        if(Parent == null)
+            throw new ArgumentNullException(nameof(Parent), "ModalContent must exist within a Modal component");
+        base.OnInitialized();
+    }
+}

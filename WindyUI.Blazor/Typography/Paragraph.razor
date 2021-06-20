@@ -1,0 +1,54 @@
+﻿<p class="@ComputedClass @CssClass">
+    @ChildContent
+</p>
+
+@code {
+    [Parameter]
+    public BodyTypes BodyType { get; set; } = BodyTypes.Body1;
+
+    [Parameter]
+    public BodyWeight Weight { get; set; } = BodyWeight.Regular;
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public string CssClass { get; set; } = "";
+
+    private string ComputedClass
+    {
+        get
+        {
+            var weightClass = "";
+            var typeClasses = "";
+
+            switch(BodyType)
+            {
+                case BodyTypes.Body1:
+                    typeClasses = "text-lg mb-4";
+                    break;
+                case BodyTypes.Body2:
+                    typeClasses = "text-base mb-2";
+                    break;
+            }
+
+            switch (Weight)
+            {
+                case BodyWeight.Light:
+                    weightClass = "font-light";
+                    break;
+                case BodyWeight.Regular:
+                    weightClass = "font-regular";
+                    break;
+                case BodyWeight.Medium:
+                    weightClass = "font-medium";
+                    break;
+                case BodyWeight.Semibold:
+                    weightClass = "font-semibold";
+                    break;
+            }
+
+            return $"font-body leading-relaxed {weightClass} {typeClasses}";
+        }
+    }
+}

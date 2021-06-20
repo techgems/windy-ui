@@ -1,0 +1,215 @@
+﻿@page "/Modals"
+
+@using WindyUI.Documentation.Components;
+@using WindyUI.Documentation.Components.Modals;
+@using WindyUI.Form;
+@using WindyUI.Typography;
+@using WindyUI.Buttons;
+@using WindyUI.Modals;
+@using System.Text;
+
+<Header HeaderType="HeaderTypes.H2">Modals</Header>
+
+<Paragraph>
+    Modals are to be used specifically when you want information or actions to be done in a different context than the action that triggers them.
+</Paragraph>
+
+<Header HeaderType="HeaderTypes.H4">Base Modal</Header>
+
+<ExtendedCodeTabToggle CssClass="my-4 mx-auto">
+    <DisplayContent>
+        <Modal @ref="ModalRef">
+            <ModalContent>
+                <div>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                </div>
+            </ModalContent>
+            <ModalFooter>
+                <Button Color="ButtonColors.Primary" Type="ButtonTypes.Outlined" OnClick="CloseModal">Cancel</Button>
+                <Button Color="ButtonColors.Primary" Type="ButtonTypes.Contained" OnClick="CloseModal">Accept</Button>
+            </ModalFooter>
+        </Modal>
+
+        <Button Color="ButtonColors.Primary" OnClick="OpenModal">Open modal</Button>
+    </DisplayContent>
+    <CodeContent>
+        Modals require the use of a ref to call the <code>Open</code> and <code>Close</code> functions.
+
+        <CodeHighlights Code="@_modalCode" Language="@SupportedLanguages.Razor" />
+    </CodeContent>
+</ExtendedCodeTabToggle>
+
+<Header HeaderType="HeaderTypes.H4">Action Modal</Header>
+
+<Paragraph>
+    The same as a base modal, but without the need to specify the <code>ModalFooter</code>, as it provides an outlined and contained button by default.
+    It receives a two functions as parameters instead: <code>OnClose</code> and <code>OnAccept</code>.
+    You can also override the default text of the buttons with the parameters: <code>AcceptButtonText</code> and <code>CancelButtonText</code>, though these parameters are not mandatory.
+</Paragraph>
+
+<ExtendedCodeTabToggle CssClass="my-4 mx-auto">
+    <DisplayContent>
+        <Button Color="ButtonColors.Primary" OnClick="OpenActionModal">Open form modal</Button>
+        <FormModal @ref="FormModalRef" Model="FormModel" FormId="form-id" OnClose="FormModalOnClose" OnAccept="FormModalOnAccept">
+            <DataAnnotationsValidator />
+            <TextInput Id="Name" Label="Name" @bind-Value="@FormModel.Name" ValidationFor="@(() => FormModel.Name)" />
+            <TextInput Id="AgeGroup" Label="AgeGroup" @bind-Value="@FormModel.AgeGroup" ValidationFor="@(() => FormModel.AgeGroup)" />
+        </FormModal>
+    </DisplayContent>
+    <CodeContent>
+        First we need to define our model to use in our form:
+        <br />
+
+        <CodeHighlights Code="@_formModelCode" Language="@SupportedLanguages.CSharp" />
+
+        <br />
+
+        Once we've done that we can utilize the <code>FormModal</code> component similarly to how we would use an <code>EditForm</code> component.
+        It is mandatory however to add the form id for the form modal component to work properly.
+
+        To open the modal we need to use a ref. As this is a component with Generics, you'll see that the definition of the ref is little different from the one above.
+        You can use any validator of your choice as <code>FormModal</code> is essentially a fancy opinionated wrapper around <code>EditForm</code>.
+
+        <br />
+
+        <CodeHighlights Code="@_formModalCode" Language="@SupportedLanguages.Razor" />
+    </CodeContent>
+</ExtendedCodeTabToggle>
+
+<Header HeaderType="HeaderTypes.H4">Alert Dialog</Header>
+
+<Paragraph>
+    For defined action confirmation with little customization, the idea of this modal is for it to be used on delete prompts or warnings upon certain actions.
+</Paragraph>
+
+<ExtendedCodeTabToggle CssClass="my-4 mx-auto">
+    <DisplayContent>
+        <Button Color="ButtonColors.Primary" OnClick="AlertDialog.Open">Open alert dialog</Button>
+        <AlertDialog @ref="AlertDialog" AlertTitle="Warning!" AlertText="Do you want to delete this?" OnConfirm="() => { }" />
+    </DisplayContent>
+    <CodeContent>
+        Like a normal <code>Modal</code>, <code>AlertDialog</code> requires the use of a ref to call the <code>Open</code> function. You can use the <code>Close</code> function if you need to, but it is used internally when you hit the cancel button.
+        <CodeHighlights Code="@_alertDialogCode" Language="SupportedLanguages.Razor" />
+    </CodeContent>
+</ExtendedCodeTabToggle>
+
+@code {
+    public Modal ModalRef { get; set; } = new Modal();
+    public FormModal<FormModel> FormModalRef { get; set; } = new FormModal<FormModel>();
+    public AlertDialog AlertDialog { get; set; } = new AlertDialog();
+
+    public FormModel FormModel { get; set; } = new FormModel();
+
+    private string _modalCode = "";
+    private string _formModelCode = "";
+    private string _formModalCode = "";
+    private string _alertDialogCode = "";
+
+    protected override void OnInitialized()
+    {
+        StringBuilder codeCreator = new StringBuilder();
+        codeCreator.AppendLine(@"<Modal @ref=""ModalRef"">");
+        codeCreator.AppendLine(@"   <ModalContent>");
+        codeCreator.AppendLine(@"       <div>");
+        codeCreator.AppendLine(@"           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
+        codeCreator.AppendLine(@"           Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.");
+        codeCreator.AppendLine(@"           Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.");
+        codeCreator.AppendLine(@"       </div>");
+        codeCreator.AppendLine(@"   </ModalContent>");
+        codeCreator.AppendLine(@"   <ModalFooter>");
+        codeCreator.AppendLine(@"       <Button Color=""ButtonColors.Primary"" Type=""ButtonTypes.Outlined"" OnClick=""CloseModal"">Cancel</Button>");
+        codeCreator.AppendLine(@"       <Button Color=""ButtonColors.Primary"" Type=""ButtonTypes.Contained"" OnClick=""CloseModal"">Accept</Button>");
+        codeCreator.AppendLine(@"   </ModalFooter>");
+        codeCreator.AppendLine(@"</Modal>");
+        codeCreator.AppendLine();
+        codeCreator.AppendLine("@code {");
+        codeCreator.AppendLine("    public Modal ModalRef { get; set; } = new Modal();");
+        codeCreator.AppendLine();
+        codeCreator.AppendLine("    public void OpenModal()");
+        codeCreator.AppendLine("    {");
+        codeCreator.AppendLine("        ModalRef.Open();");
+        codeCreator.AppendLine("    }");
+        codeCreator.AppendLine();
+        codeCreator.AppendLine("    public void CloseModal()");
+        codeCreator.AppendLine("    {");
+        codeCreator.AppendLine("        ModalRef.Close();");
+        codeCreator.AppendLine("    }");
+        codeCreator.AppendLine("}");
+
+        _modalCode = codeCreator.ToString();
+        codeCreator.Clear();
+
+        codeCreator.AppendLine(@"<Button Color=""ButtonColors.Primary"" OnClick=""OpenActionModal"">Open form modal</Button>");
+        codeCreator.AppendLine(@"<FormModal @ref=""FormModalRef"" Model=""FormModel"" FormId=""form-id"" OnClose=""FormModalOnClose"" OnAccept=""FormModalOnAccept"">");
+        codeCreator.AppendLine(@"    <DataAnnotationsValidator />");
+        codeCreator.AppendLine(@"    <TextInput Id=""Name"" Label=""Name"" @bind-Value=""@FormModel.Name"" ValidationFor=""@(() => FormModel.Name)"" />");
+        codeCreator.AppendLine(@"    <TextInput Id=""AgeGroup"" Label=""AgeGroup"" @bind-Value=""@FormModel.AgeGroup"" ValidationFor=""@(() => FormModel.AgeGroup)"" />");
+        codeCreator.AppendLine(@"</FormModal>");
+        codeCreator.AppendLine();
+        codeCreator.AppendLine("@code {");
+        codeCreator.AppendLine("    public FormModal<FormModel> FormModalRef { get; set; } = new FormModal<FormModel>();");
+        codeCreator.AppendLine("    public FormModel FormModel { get; set; } = new FormModel();");
+        codeCreator.AppendLine();
+        codeCreator.AppendLine("    public void OpenFormModal()");
+        codeCreator.AppendLine("    {");
+        codeCreator.AppendLine("        FormModalRef.Open();");
+        codeCreator.AppendLine("    }");
+        codeCreator.AppendLine();
+        codeCreator.AppendLine("    public void FormModalOnClose()");
+        codeCreator.AppendLine("    {");
+        codeCreator.AppendLine("        //Action to execute on close.");
+        codeCreator.AppendLine("    }");
+        codeCreator.AppendLine();
+        codeCreator.AppendLine("    public void FormModalOnAccept()");
+        codeCreator.AppendLine("    {");
+        codeCreator.AppendLine("        //Action to execute on accept.");
+        codeCreator.AppendLine("    }");
+        codeCreator.AppendLine("}");
+
+        _formModalCode = codeCreator.ToString();
+        codeCreator.Clear();
+
+        codeCreator.AppendLine("public class FormModel");
+        codeCreator.AppendLine("{");
+        codeCreator.AppendLine("    [Required] public string Name { get; set; }");
+        codeCreator.AppendLine("    [Required] public string AgeGroup { get; set; }");
+        codeCreator.AppendLine("}");
+
+        _formModelCode = codeCreator.ToString();
+        codeCreator.Clear();
+
+        codeCreator.AppendLine(@"<Button Color=""ButtonColors.Primary"" OnClick=""AlertDialog.Open"">Open alert dialog</Button>");
+        codeCreator.AppendLine(@"<AlertDialog @ref=""AlertDialog"" AlertTitle=""Warning!"" AlertText=""Do you want to delete this?"" OnConfirm=""() => { }"" />");
+        codeCreator.AppendLine();
+        codeCreator.AppendLine("@code {");
+        codeCreator.AppendLine("    public AlertDialog AlertDialog { get; set; } = new AlertDialog();");
+        codeCreator.AppendLine("}");
+
+        _alertDialogCode = codeCreator.ToString();
+    }
+
+    public void OpenModal()
+    {
+        ModalRef.Open();
+    }
+
+    public void CloseModal()
+    {
+        ModalRef.Close();
+    }
+
+    public void OpenActionModal()
+    {
+        FormModalRef.Open();
+    }
+
+    public void FormModalOnClose()
+    {
+        //Action to execute on close.
+    }
+
+    public void FormModalOnAccept()
+    {
+        //Action to execute on accept.
+    }
+}

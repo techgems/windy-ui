@@ -1,0 +1,8 @@
+﻿<td class="px-6 py-4 whitespace-nowrap">
+    @ChildContent
+</td>
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+}

@@ -1,0 +1,16 @@
+﻿<NavLink href="@Link" ActiveClass="@ActiveClass" class="@InactiveClass" Match="NavLinkMatch.Prefix">
+    @ChildContent
+</NavLink>
+
+@code {
+
+    private readonly string ActiveClass = "bg-primary text-primary-text px-3 py-2 rounded-md text-sm font-medium";
+
+    private readonly string InactiveClass = "text-primary-text hover:bg-primary px-3 py-2 rounded-md text-sm font-medium";
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public string Link { get; set; } = "/#";
+}

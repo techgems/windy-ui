@@ -1,0 +1,76 @@
+﻿@inject NavigationManager NavigationManager;
+
+
+<header class="bg-primary-dark shadow-lg">
+    <div class="max-w-7xl mx-auto px-2 md:px-6 2xl:max-w-screen-2xl">
+        <div class="relative flex items-center justify-between h-16">
+            <!--Sidebar for mobile since sidebar is always hidden there.-->
+            <MobileMenu IsOpen="IsMobileMenuOpen" ToggleMenu="ToggleMobileMenu" />
+            <div class="flex-1 flex items-center justify-center md:items-stretch md:justify-start">
+                <div class="flex-shrink-0 flex items-center p-4">
+                    <img class="flex md:hidden h-10 w-auto" src="/img/logos/Lacarte-isotype.svg" alt="Logo">
+                </div>
+                <div class="hidden md:block md:ml-6">
+                    <div class="flex space-x-4">
+                        @foreach (var option in Options)
+                        {
+                            <NavbarLink Link="@option.Link">
+                                @option.Text
+                            </NavbarLink>
+                        }
+                        <!--<NavbarLink Link="/Users">
+                            Users
+                        </NavbarLink>
+                        <NavbarLink Link="/Restaurants">
+                            Restaurants
+                        </NavbarLink>
+                        <NavbarLink Link="/Tags">
+                            Tags
+                        </NavbarLink>
+                        <NavbarLink Link="/SocialMedia">
+                            Social Media
+                        </NavbarLink>
+                        <NavbarLink Link="/RestaurantTypes">
+                            Restaurant Types
+                        </NavbarLink>-->
+                    </div>
+                </div>
+            </div>
+            <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                <!-- Profile dropdown -->
+                <ProfileMenu />
+            </div>
+        </div>
+    </div>
+    <div class="@( !IsMobileMenuOpen ? "block" : "hidden" ) md:hidden">
+        <div class="px-2 pt-2 pb-3 space-y-1">
+            @foreach (var option in Options)
+            {
+                <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
+                    @option.Text
+                </a>
+            }
+
+            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white"
+            <a href="#" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium">Users</a>
+            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Restaurants</a>
+            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Tags</a>
+            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Social Media</a>
+            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Restaurant Types</a>-->
+        </div>
+    </div>
+</header>
+
+@code {
+    [Parameter]
+    public List<NavigationOption> Options { get; set; } = new List<NavigationOption>();
+
+    public bool IsMobileMenuOpen { get; set; } = false;
+    public string LogoIsotypeUrl { get; set; } = "";
+    public string LogoTextUrl { get; set; } = "";
+
+    public void ToggleMobileMenu()
+    {
+        IsMobileMenuOpen = !IsMobileMenuOpen;
+    }
+}

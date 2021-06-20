@@ -1,0 +1,169 @@
+﻿<button @onclick="OnClick" @attributes="AttributeRender()" class="w-full rounded-md @SizeClasses @TypeColorClass @CssClass text-base font-medium focus:outline-none sm:ml-3 sm:w-auto">
+    @ChildContent
+</button>
+
+@code {
+    Dictionary<string, object> AttributeRender()
+    {
+        var dict = new Dictionary<string, object>();
+        if (!string.IsNullOrWhiteSpace(FormId))
+            dict.Add("form", FormId);
+
+        return dict;
+    }
+
+
+    /// <summary>
+    /// Defines the size of the button. Defaults to Medium.
+    /// </summary>
+    [Parameter]
+    public ButtonSizes Size { get; set; } = ButtonSizes.Medium;
+
+    /// <summary>
+    /// Defines the type of button. Must always be specified.
+    /// </summary>
+    [Parameter]
+    public ButtonTypes Type { get; set; }
+
+    /// <summary>
+    /// Defines the color of the button. Must always be specified.
+    /// </summary>
+    [Parameter]
+    public ButtonColors Color { get; set; }
+
+    /// <summary>
+    /// The id of the form the button is meant to submit, only to be used when the button is outside of the form it's meant to submit.
+    /// </summary>
+    [Parameter]
+    public string FormId { get; set; } = "";
+
+    /// <summary>
+    /// Child content to render inside the button.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    /// <summary>
+    /// CssClass to add extra styles to the button. Not mandatory.
+    /// </summary>
+    [Parameter]
+    public string CssClass { get; set; } = "";
+
+    /// <summary>
+    /// Click event for the button. Not mandatory.
+    /// </summary>
+    [Parameter]
+    public EventCallback OnClick { get; set; }
+
+    private string SizeClasses
+    {
+        get
+        {
+            switch (Size)
+            {
+                case ButtonSizes.Small:
+                    return "px-2 py-1 text-sm";
+                case ButtonSizes.Medium:
+                    return "px-3 py-2 text-base sm:text-sm";
+                case ButtonSizes.Large:
+                    return "px-4 py-3 text-base sm:text-sm";
+                default:
+                    return "";
+            }
+        }
+    }
+
+    private string TypeColorClass
+    {
+        get
+        {
+            switch (Type)
+            {
+                case ButtonTypes.Contained:
+                    return ColorContainedClasses;
+                case ButtonTypes.Outlined:
+                    return ColorOutlinedClasses;
+                case ButtonTypes.Text:
+                    return ColorTextClasses;
+                default:
+                    return "";
+            }
+        }
+    }
+
+    private string ColorTextClasses
+    {
+        get
+        {
+            switch (Color)
+            {
+                case ButtonColors.Primary:
+                    return "bg-white hover:bg-primary-light text-primary";
+                case ButtonColors.Secondary:
+                    return "bg-white hover:bg-secondary-light text-secondary";
+                case ButtonColors.Info:
+                    return "bg-white hover:bg-info-light text-info";
+                case ButtonColors.Success:
+                    return "bg-white hover:bg-success-light text-success";
+                case ButtonColors.Danger:
+                    return "bg-white hover:bg-danger-light text-danger";
+                case ButtonColors.Neutral:
+                    return "bg-white hover:bg-neutral-light text-neutral";
+                default:
+                    return "";
+            }
+        }
+    }
+
+    private string ColorOutlinedClasses
+    {
+        get
+        {
+            var baseClasses = "bg-white border";
+
+            switch (Color)
+            {
+                case ButtonColors.Primary:
+                    return $"{baseClasses} hover:bg-primary-light text-primary border-primary";
+                case ButtonColors.Secondary:
+                    return $"{baseClasses} hover:bg-secondary-light text-secondary border-secondary";
+                case ButtonColors.Info:
+                    return $"{baseClasses} hover:bg-info-light text-info border-info";
+                case ButtonColors.Success:
+                    return $"{baseClasses} hover:bg-success-light text-success border-success";
+                case ButtonColors.Danger:
+                    return $"{baseClasses} hover:bg-danger-light text-danger border-danger";
+                case ButtonColors.Neutral:
+                    return $"{baseClasses} hover:bg-neutral-light text-neutral border-neutral";
+                default:
+                    return "";
+            }
+        }
+    }
+
+    private string ColorContainedClasses
+    {
+        get
+        {
+            var baseClasses = "focus:ring focus:ring-opacity-60 shadow-sm hover:shadow-md border";
+
+            switch (Color)
+            {
+                case ButtonColors.Primary:
+                    return $"{baseClasses} bg-primary hover:bg-primary-dark text-primary-text focus:ring-primary border-primary";
+                case ButtonColors.Secondary:
+                    return $"{baseClasses} bg-secondary hover:bg-secondary-dark text-secondary-text focus:ring-secondary border-secondary";
+                case ButtonColors.Neutral:
+                    return $"{baseClasses} bg-neutral hover:bg-neutral-dark text-neutral-text focus:ring-neutral border-neutral";
+                case ButtonColors.Info:
+                    return $"{baseClasses} bg-info hover:bg-info-dark text-info-text focus:ring-info border-info";
+                case ButtonColors.Danger:
+                    return $"{baseClasses} bg-danger hover:bg-danger-dark text-danger-text focus:ring-danger border-danger";
+                case ButtonColors.Success:
+                    return $"{baseClasses} bg-success hover:bg-success-dark text-success-text focus:ring-success border-success";
+                default:
+                    return "";
+            }
+        }
+    }
+}

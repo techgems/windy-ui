@@ -1,0 +1,8 @@
+﻿<tbody class="bg-white divide-y divide-gray-200">
+    @ChildContent
+</tbody>
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+}

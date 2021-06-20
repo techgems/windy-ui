@@ -1,0 +1,26 @@
+﻿@using WindyUI.Icons;
+@using WindyUI.Cards;
+@using WindyUI.Tabs;
+
+<div class="@CssClass">
+    <Tabs>
+        <TabPanel TabName="Display">
+            @DisplayContent
+        </TabPanel>
+        <TabPanel TabName="Code">
+            @CodeContent
+        </TabPanel>
+    </Tabs>
+</div>
+
+@code {
+    [Parameter]
+    public RenderFragment DisplayContent { get; set; }
+
+    [Parameter]
+    public RenderFragment CodeContent { get; set; }
+
+
+    [Parameter]
+    public string CssClass { get; set; } = "";
+}

@@ -1,0 +1,46 @@
+﻿@inject IJSRuntime _jsRuntime
+
+<pre>
+    <code class="@LanguageString rounded-lg @CssClass">
+        @Code
+    </code>
+</pre>
+
+@code {
+    [Parameter]
+    public string Code { get; set; } = "";
+
+    [Parameter]
+    public SupportedLanguages Language { get; set; }
+
+    private string LanguageString
+    {
+        get
+        {
+            var lang = "";
+
+            switch(Language)
+            {
+                case SupportedLanguages.CSharp:
+                    lang = "csharp";
+                    break;
+                case SupportedLanguages.HTML:
+                    lang = "html";
+                    break;
+                case SupportedLanguages.Razor:
+                    lang = "highlightjs-cshtml-razor";
+                    break;
+            }
+
+            return lang;
+        }
+    }
+
+    [Parameter]
+    public string CssClass { get; set; } = "";
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await _jsRuntime.InvokeVoidAsync("hljs.highlightAll");
+    }
+}

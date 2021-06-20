@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WindyUI", "WindyUI.Blazor\WindyUI.csproj", "{A6AA2DAD-FE8A-4817-A20E-91B48A500D47}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WindyUI.Documentation", "WindyUI.Documentation\WindyUI.Documentation.csproj", "{E4861341-E6C4-4E15-8FB6-2B51B773B651}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A6AA2DAD-FE8A-4817-A20E-91B48A500D47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6AA2DAD-FE8A-4817-A20E-91B48A500D47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6AA2DAD-FE8A-4817-A20E-91B48A500D47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6AA2DAD-FE8A-4817-A20E-91B48A500D47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4861341-E6C4-4E15-8FB6-2B51B773B651}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4861341-E6C4-4E15-8FB6-2B51B773B651}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4861341-E6C4-4E15-8FB6-2B51B773B651}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4861341-E6C4-4E15-8FB6-2B51B773B651}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E32683C8-E752-4D07-9AC2-EF67D40D533A}
+	EndGlobalSection
+EndGlobal

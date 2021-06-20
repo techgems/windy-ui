@@ -1,0 +1,90 @@
+﻿<!--
+Snackbars exist to acknowledge an action of the user, or a consequence based on a user action.
+Like a success message after modifying or creating something, or an error that is the system's fault, not the user's.
+
+TO DO: Needs animations.
+-->
+
+<div class="@ColorClasses rounded-md w-1/4 fixed @OpenClosedAnimationClasses @PositionClasses z-10 shadow-2xl">
+    <div class="px-4 py-3 m-auto">@Message</div>
+</div>
+
+
+@code {
+    [Parameter]
+    public SnackbarTypes Type { get; set; }
+
+    [Parameter]
+    public SnackbarPositions Position { get; set; } = SnackbarPositions.TopRight;
+
+    [Parameter]
+    public string Message { get; set; } = "";
+
+    [Parameter]
+    public int Duration { get; set; } = 3000;
+
+    private readonly int _fadeoutAnimationDuration = 400;
+
+    public void Open()
+    {
+        OpenClosedAnimationClasses = "animate-fadein-400";
+        //Set a timer with a callback.
+        _ = new System.Threading.Timer(AnimateCloseSnackbar, null, Duration, System.Threading.Timeout.Infinite);
+    }
+
+    private void AnimateCloseSnackbar(object? state)
+    {
+        OpenClosedAnimationClasses = "animate-fadeout-400";
+        StateHasChanged();
+        _ = new System.Threading.Timer(HideSnackbar, null, _fadeoutAnimationDuration, System.Threading.Timeout.Infinite);
+    }
+
+    private void HideSnackbar(object? state)
+    {
+        OpenClosedAnimationClasses = "hidden";
+        StateHasChanged();
+    }
+
+    //Starts hidden, when opened, uses the fadein animation, then fades out and goes back to hidden again.
+    private string OpenClosedAnimationClasses { get; set; } = "hidden";
+
+    private string PositionClasses
+    {
+        get
+        {
+            switch(Position)
+            {
+                case SnackbarPositions.TopRight:
+                    return "top-20 right-3";
+                case SnackbarPositions.TopLeft:
+                    return "top-20 left-3";
+                case SnackbarPositions.BottomRight:
+                    return "bottom-3 right-3";
+                case SnackbarPositions.BottomLeft:
+                    return "bottom-3 left-3";
+                default:
+                    return "";
+            }
+        }
+    }
+
+    private string ColorClasses
+    {
+        get
+        {
+            switch(Type)
+            {
+                case SnackbarTypes.Success:
+                    return "bg-success text-success-text";
+                case SnackbarTypes.Error:
+                    return "bg-danger text-danger-text";
+                case SnackbarTypes.Info:
+                    return "bg-info text-info-text";
+                case SnackbarTypes.Warning:
+                    return "bg-warning text-warning-text";
+                default:
+                    return "";
+            }
+        }
+    }
+}

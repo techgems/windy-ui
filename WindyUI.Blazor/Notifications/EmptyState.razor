@@ -1,0 +1,14 @@
+﻿<!--An empty state component exists to have something valid to display when there was no data to load on initial load.-->
+
+<h3>EmptyState</h3>
+
+@code {
+    [Parameter]
+    public string Title { get; set; } = "";
+
+    [Parameter]
+    public string SuggestedAction { get; set; } = "";
+
+    [Parameter]
+    public string ImageUrl { get; set; } = "";
+}

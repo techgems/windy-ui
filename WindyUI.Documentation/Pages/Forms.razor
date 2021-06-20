@@ -1,0 +1,161 @@
+﻿@page "/Forms"
+
+@using WindyUI.Typography;
+@using WindyUI.Buttons;
+@using WindyUI.Form;
+@using WindyUI.Documentation.Components.Forms;
+@using WindyUI.Documentation.Components;
+@using System.Text;
+
+<Header HeaderType="HeaderTypes.H3">Form components</Header>
+
+<Paragraph BodyType="BodyTypes.Body1" Weight="BodyWeight.Regular">
+    These Input elements allow for usage with Blazor built in validation with Edit Form and they can also be used outside of one.
+    They include the <code>ValidationFor</code> parameter which allows the component to use the functionality of the <code>ValidationMessage</code> component in a single component.
+</Paragraph>
+
+<Paragraph BodyType="BodyTypes.Body1" Weight="BodyWeight.Regular">
+    You can bind the inputs to a specific property with the <code>bind-Value</code> Blazor convention. 
+    You can also use the <code>ValueChanged</code> and <code>Value</code> properties directly if you need more control over the <code>input</code> event.
+</Paragraph>
+
+<Paragraph BodyType="BodyTypes.Body1" Weight="BodyWeight.Regular">
+    Below you will find a simple form sample that utilizes all the existing inputs, but more detail about each component can be found in the specific Input pages.
+</Paragraph>
+
+<ExtendedCodeTabToggle>
+    <DisplayContent>
+        <EditForm Model="Model">
+            <DataAnnotationsValidator />
+            <TextInput Id="Name" Label="Name" @bind-Value="@Model.Name" ValidationFor="@(() => Model.Name)" />
+            <TextAreaInput Label="Text Area" MaxCharacters="1000" Placeholder="My placeholder" @bind-Value="@Model.TextArea" ValidationFor="@(() => Model.TextArea)" />
+            <SelectInput Id="SelectValue" Label="SelectValue" Options="SelectOptions" @bind-Value="@Model.SelectValue" ValidationFor="@(() => Model.SelectValue)" />
+            <RadioGroup Id="RadioButton" Label="RadioButton" Options="SelectOptions" @bind-Value="@Model.RadioButton" ValidationFor="@(() => Model.RadioButton)" />
+            <CheckboxInput Id="Checkbox" Label="Checkbox" Description="A checkbox option" @bind-Value="@Model.Checkbox" ValidationFor="@(() => Model.Checkbox)" />
+
+            <div class="flex justify-end">
+                <Button Color="ButtonColors.Primary" Type="ButtonTypes.Contained">Validate</Button>
+            </div>
+        </EditForm>
+    </DisplayContent>
+    <CodeContent>
+        These would be the model and the C# objects used for the form to work:
+
+        <CodeHighlights Code="@_validatedFormModel" Language="SupportedLanguages.CSharp" />
+
+        The markup is as follows:
+
+        <CodeHighlights Code="@_fullFormComponents" Language="SupportedLanguages.Razor" />
+    </CodeContent>
+</ExtendedCodeTabToggle>
+
+
+<ExtendedCodeTabToggle>
+    <DisplayContent>
+        <TextInput Id="Name" Label="Name" @bind-Value="@Model.Name" />
+        <SelectInput Id="SelectValue" Label="SelectValue" Options="SelectOptions" @bind-Value="@Model.SelectValue" />
+        <TextAreaInput Label="Text Area" MaxCharacters="1000" Placeholder="My placeholder" @bind-Value="@Model.TextArea" />
+        <RadioGroup Id="RadioButton" Label="RadioButton" Options="SelectOptions" @bind-Value="@Model.RadioButton" />
+        <CheckboxInput Id="Checkbox" Label="Checkbox" Description="A checkbox option" @bind-Value="@Model.Checkbox" />
+    </DisplayContent>
+    <CodeContent>
+        These would be the model and the C# objects used for the form to work:
+
+        <CodeHighlights Code="@_formModel" Language="SupportedLanguages.CSharp" />
+
+        The markup is as follows:
+
+        <CodeHighlights Code="@_freeFormComponents" Language="SupportedLanguages.Razor" />
+    </CodeContent>
+</ExtendedCodeTabToggle>
+
+@code {
+    private SampleFormModel Model { get; set; } = new SampleFormModel();
+    private List<string> SelectOptions { get; set; } = new List<string>() { "Option 1", "Option 2", "Option 3" };
+    private List<string> RadioOptions { get; set; } = new List<string>() { "Radio 1", "Radio 2", "Radio 3" };
+
+    private string _fullFormComponents = "";
+    private string _freeFormComponents = "";
+    private string _formModel = "";
+    private string _validatedFormModel = "";
+
+    protected override void OnInitialized()
+    {
+        StringBuilder codeCreator = new StringBuilder();
+
+        codeCreator.AppendLine(@"<TextInput Id=""Name"" Label=""Name"" @bind-Value=""@Model.Name"" />");
+        codeCreator.AppendLine(@"<SelectInput Id=""SelectValue"" Label=""SelectValue"" Options=""SelectOptions"" @bind-Value=""@Model.SelectValue"" />");
+        codeCreator.AppendLine(@"<TextAreaInput Label=""Text Area"" MaxCharacters=""1000"" Placeholder=""My placeholder"" @bind-Value=""@Model.TextArea"" />");
+        codeCreator.AppendLine(@"<RadioGroup Id=""RadioButton"" Label=""RadioButton"" Options=""SelectOptions"" @bind-Value=""@Model.RadioButton"" />");
+        codeCreator.AppendLine(@"<CheckboxInput Id=""Checkbox"" Label=""Checkbox"" Description=""A checkbox option"" @bind-Value=""@Model.Checkbox"" />");
+        codeCreator.AppendLine();
+        codeCreator.AppendLine("@code {");
+        codeCreator.AppendLine(@"   private SampleFormModel Model { get; set; } = new SampleFormModel();");
+        codeCreator.AppendLine(@"   private List<string> SelectOptions { get; set; } = new List<string>() { ""Option 1"", ""Option 2"", ""Option 3"" };");
+        codeCreator.AppendLine(@"   private List<string> RadioOptions { get; set; } = new List<string>() { ""Radio 1"", ""Radio 2"", ""Radio 3"" };");
+        codeCreator.AppendLine("}");
+
+        _freeFormComponents = codeCreator.ToString();
+        codeCreator.Clear();
+
+        codeCreator.AppendLine("public class SampleFormModel");
+        codeCreator.AppendLine("{");
+        codeCreator.AppendLine("    public string Name { get; set; }");
+        codeCreator.AppendLine("    public string TextArea { get; set; }");
+        codeCreator.AppendLine("    public string SelectValue { get; set; }");
+        codeCreator.AppendLine("    public string RadioButton { get; set; }");
+        codeCreator.AppendLine("    public bool Checkbox { get; set; }");
+        codeCreator.AppendLine("    public string LastName { get; set; }");
+        codeCreator.AppendLine("}");
+
+        _formModel = codeCreator.ToString();
+        codeCreator.Clear();
+
+        codeCreator.AppendLine(@"<EditForm Model=""Model"">");
+        codeCreator.AppendLine(@"   <DataAnnotationsValidator />");
+        codeCreator.AppendLine(@"   <TextInput Id=""Name"" Label=""Name"" @bind-Value=""@Model.Name"" />");
+        codeCreator.AppendLine(@"   <SelectInput Id=""SelectValue"" Label=""SelectValue"" Options=""SelectOptions"" @bind-Value=""@Model.SelectValue"" />");
+        codeCreator.AppendLine(@"   <TextAreaInput Label=""Text Area"" MaxCharacters=""1000"" Placeholder=""My placeholder"" @bind-Value=""@Model.TextArea"" />");
+        codeCreator.AppendLine(@"   <RadioGroup Id=""RadioButton"" Label=""RadioButton"" Options=""SelectOptions"" @bind-Value=""@Model.RadioButton"" />");
+        codeCreator.AppendLine(@"   <CheckboxInput Id=""Checkbox"" Label=""Checkbox"" Description=""A checkbox option"" @bind-Value=""@Model.Checkbox"" />");
+        codeCreator.AppendLine();
+        codeCreator.AppendLine(@"   <div class=""flex justify-end"">");
+        codeCreator.AppendLine(@"       <Button Color=""ButtonColors.Primary"" Type=""ButtonTypes.Contained"">Validate</Button>");
+        codeCreator.AppendLine(@"   </div>");
+        codeCreator.AppendLine(@"</EditForm>");
+        codeCreator.AppendLine();
+        codeCreator.AppendLine("@code {");
+        codeCreator.AppendLine(@"   private SampleFormModel Model { get; set; } = new SampleFormModel();");
+        codeCreator.AppendLine(@"   private List<string> SelectOptions { get; set; } = new List<string>() { ""Option 1"", ""Option 2"", ""Option 3"" };");
+        codeCreator.AppendLine(@"   private List<string> RadioOptions { get; set; } = new List<string>() { ""Radio 1"", ""Radio 2"", ""Radio 3"" };");
+        codeCreator.AppendLine("}");
+
+        _fullFormComponents = codeCreator.ToString();
+        codeCreator.Clear();
+
+        codeCreator.AppendLine("public class SampleFormModel");
+        codeCreator.AppendLine("{");
+        codeCreator.AppendLine("    [Required]");
+        codeCreator.AppendLine("    [MaxLength(3)]");
+        codeCreator.AppendLine("    public string Name { get; set; }");
+        codeCreator.AppendLine();
+        codeCreator.AppendLine("    [Required]");
+        codeCreator.AppendLine("    public string TextArea { get; set; }");
+        codeCreator.AppendLine();
+        codeCreator.AppendLine("    [Required]");
+        codeCreator.AppendLine("    [MaxLength(3)]");
+        codeCreator.AppendLine("    public string SelectValue { get; set; }");
+        codeCreator.AppendLine();
+        codeCreator.AppendLine("    [Required]");
+        codeCreator.AppendLine("    public string RadioButton { get; set; }");
+        codeCreator.AppendLine();
+        codeCreator.AppendLine("    public bool Checkbox { get; set; }");
+        codeCreator.AppendLine();
+        codeCreator.AppendLine("    [Required]");
+        codeCreator.AppendLine("    public string LastName { get; set; }");
+        codeCreator.AppendLine("}");
+
+        _validatedFormModel = codeCreator.ToString();
+        codeCreator.Clear();
+    }
+}

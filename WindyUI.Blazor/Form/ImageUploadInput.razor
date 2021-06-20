@@ -1,0 +1,54 @@
+﻿@using WindyUI.Icons;
+@using WindyUI.Buttons;
+
+<!--TO DO: Add conditional message of file types supported.-->
+@if(!string.IsNullOrEmpty(Config.Label))
+{
+    <span class="block text-sm font-medium text-gray-700">@Config.Label</span>
+}
+
+
+<div class="mt-3 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md h-48">
+    <div class="text-center m-auto">
+        <div class="@(Base64Images.Count == 0 ? "block" : "hidden")">
+                <Icon IconType="IconType.ImagePlus" CssClass="text-gray-400 h-12 w-12 m-auto" />
+                <div class="text-sm text-gray-600 mt-1">
+                    <label for="@InputIdentifier" class="relative cursor-pointer bg-white rounded-md font-medium text-primary hover:text-primary-darker focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                        <span>Upload a file</span>
+                        @if(Config.AllowsMultiple)
+                        {
+                            <InputFile OnChange="HandleChange" multiple id="@InputIdentifier" name="@InputIdentifier" class="sr-only" />
+                        }
+                        else
+                        {
+                            <InputFile OnChange="HandleChange" id="@InputIdentifier" name="@InputIdentifier" class="sr-only" />
+                        }
+                    </label>
+                </div>
+                @if(Config.SupportedTypes.Count > 0)
+                {
+                    <p class="text-xs text-gray-500">
+                        @string.Join(", ", Config.SupportedTypes) up to 10MB
+                    </p>
+                }
+                @if(Config.MaxFileLimit.HasValue && Config.AllowsMultiple)
+                {
+                    <p class="text-xs text-gray-500">
+                        @Config.MaxFileLimit.Value images left.
+                    </p>
+                }
+            </div>
+
+            <div class="@(Base64Images.Count > 0 ? "flex" : "hidden") justify-between">
+                <!--Need to know the index of the image here in order to pass it as a parameter to eliminate it on button click.-->
+                @foreach(var image in Base64Images)
+                {
+                    <div class="group">
+                        <img class="rounded mx-1" src="@image" />
+                        <IconButton IconType="IconType.Close" CssClass="m-auto opacity-0 group-hover:opacity-100" />
+                    </div>
+
+                }
+            </div>
+    </div>
+</div>

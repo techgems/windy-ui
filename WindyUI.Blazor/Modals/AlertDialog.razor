@@ -1,0 +1,83 @@
+﻿@inherits ModalBase;
+
+@using WindyUI.Icons.SVG;
+
+<CascadingValue Value="this" IsFixed="true">
+    <div class="fixed z-10 inset-0 overflow-y-auto @OpenCloseAnimationClasses">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <!--Overlay-->
+            <div class="fixed inset-0 transition-opacity @(IsOpen ? "opacity-100" : "opacity-0")">
+                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+            <!--Modal Panel-->
+            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+                <ModalContent>
+                    <div class="sm:flex sm:items-start">
+                        <!--Icon column-->
+                        <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                            <Warning />
+                        </div>
+                        <!--Text column-->
+                        <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                            <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-headline">
+                                @AlertTitle
+                            </h3>
+                            <div class="mt-2">
+                                <p class="text-sm text-gray-500">
+                                    @AlertText
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </ModalContent>
+                <ModalFooter>
+                    <button type="button" @onclick="() => { OnConfirm.InvokeAsync(); Close(); }" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
+                        @(ConfirmButtonText != null ? ConfirmButtonText : DefaultConfirmText)
+                    </button>
+                    <button type="button" @onclick="Close" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                        @(CancelButtonText != null ? CancelButtonText : DefaultCancelText)
+                    </button>
+                </ModalFooter>
+            </div>
+        </div>
+    </div>
+</CascadingValue>
+
+@code {
+    private readonly string DefaultConfirmText = "Delete";
+    private readonly string DefaultCancelText = "Cancel";
+
+    /// <summary>
+    /// Title for the alert. Appears in the header of the alert.
+    /// </summary>
+    [Parameter]
+    public string? AlertTitle { get; set; }
+
+    /// <summary>
+    /// Alert text to describe what we're alerting about.
+    /// </summary>
+    [Parameter]
+    public string? AlertText { get; set; }
+
+    /// <summary>
+    /// Optional. To customize the confirm button text.
+    /// </summary>
+    [Parameter]
+    public string? ConfirmButtonText { get; set; }
+
+    /// <summary>
+    /// Optional. To customize the cancel button text.
+    /// </summary>
+    [Parameter]
+    public string? CancelButtonText { get; set; }
+
+    /// <summary>
+    /// Event callback for alert action confirmation. Both cancel and confirm close the dialog.
+    /// </summary>
+    [Parameter]
+    public EventCallback OnConfirm { get; set; }
+
+}

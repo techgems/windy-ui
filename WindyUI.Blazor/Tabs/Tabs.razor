@@ -1,0 +1,43 @@
+﻿<CascadingValue Value="this" IsFixed="true">
+    <div class="w-full p-6 max-w-4xl mx-auto">
+        <div class="mb-3 flex justify-end">
+            @foreach (var panel in Panels)
+            {
+                var isSelected = panel.TabName == ActiveTab!.TabName;
+
+                <TabNavButton OnClick="() => { ActivatePanel(panel); }" Text="@panel.TabName" NavType="@TabNavTypes.Pills" IsSelected="@isSelected" />
+            }
+        </div>
+        <div class="bg-white rounded-lg shadow-lg border p-6 @CssClass">
+            @ChildContent
+        </div>
+    </div>
+</CascadingValue>
+
+
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public string CssClass { get; set; } = "";
+
+    public TabPanel? ActiveTab { get; set; }
+
+    private List<TabPanel> Panels { get; set; } = new List<TabPanel>();
+
+    internal void AddPage(TabPanel panel)
+    {
+        Panels.Add(panel);
+        if (Panels.Count == 1)
+            ActiveTab = panel;
+        StateHasChanged();
+    }
+
+    private void ActivatePanel(TabPanel panel)
+    {
+        ActiveTab = panel;
+        StateHasChanged();
+    }
+}

@@ -1,0 +1,29 @@
+﻿@using WindyUI.Icons;
+@using WindyUI.Cards;
+@using WindyUI.Tabs;
+
+<div class="@CssClass">
+    <Tabs>
+        <TabPanel TabName="Display">
+            @ChildContent
+        </TabPanel>
+        <TabPanel TabName="Code">
+            <CodeHighlights Code="@Code" Language="@Language" />
+        </TabPanel>
+    </Tabs>
+</div>
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public string Code { get; set; }
+
+    [Parameter]
+    public SupportedLanguages Language { get; set; } = SupportedLanguages.Razor;
+
+
+    [Parameter]
+    public string CssClass { get; set; } = "";
+}

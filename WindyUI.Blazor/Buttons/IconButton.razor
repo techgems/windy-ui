@@ -1,0 +1,16 @@
+﻿@using WindyUI.Icons;
+
+<div @onclick="OnClick" class="inline-block rounded-md bg-gray-700 text-white hover:text-gray-300 hover:bg-gray-900 m-0 p-2 cursor-pointer">
+    <Icon IconType="IconType" CssClass="h-5 w-5 inline-block" />
+</div>
+
+@code {
+    [Parameter]
+    public Action OnClick { get; set; } = delegate () { };
+
+    [Parameter]
+    public string CssClass { get; set; } = "";
+
+    [Parameter]
+    public IconType IconType { get; set; }
+}

@@ -1,0 +1,81 @@
+﻿@using WindyUI.Icons.SVG;
+
+@switch (IconType)
+{
+    case IconType.Close:
+        <Close CssClass="@ComputedClass" />
+        break;
+    case IconType.DotsVertical:
+        <DotsVertical CssClass="@ComputedClass" />
+        break;
+    case IconType.Download:
+        <Download CssClass="@ComputedClass" />
+        break;
+    case IconType.Eye:
+        <Eye CssClass="@ComputedClass" />
+        break;
+    case IconType.Logout:
+        <Logout CssClass="@ComputedClass" />
+        break;
+    case IconType.Pencil:
+        <Pencil CssClass="@ComputedClass" />
+        break;
+    case IconType.Image:
+        <Image CssClass="@ComputedClass" />
+        break;
+    case IconType.ImagePlus:
+        <ImagePlus CssClass="@ComputedClass" />
+        break;
+    case IconType.Plus:
+        <Plus CssClass="@ComputedClass" />
+        break;
+    case IconType.Trash:
+        <Trash CssClass="@ComputedClass" />
+        break;
+    case IconType.Settings:
+        <Settings CssClass="@ComputedClass" />
+        break;
+    case IconType.Upload:
+        <Upload CssClass="@ComputedClass" />
+        break;
+    case IconType.Warning:
+        <Warning CssClass="@ComputedClass" />
+        break;
+}
+
+@code {
+    [Parameter]
+    public IconType IconType { get; set; }
+
+    [Parameter]
+    public IconSizes IconSize { get; set; } = IconSizes.S;
+
+    [Parameter]
+    public string CssClass { get; set; } = "";
+
+    private string ComputedClass
+    {
+        get
+        {
+            var sizeClasses = "";
+
+            switch (IconSize)
+            {
+                case IconSizes.XS:
+                    sizeClasses = "w-6";
+                    break;
+                case IconSizes.S:
+                    sizeClasses = "w-8";
+                    break;
+                case IconSizes.M:
+                    sizeClasses = "w-10";
+                    break;
+                case IconSizes.L:
+                    sizeClasses = "w-12";
+                    break;
+            }
+
+            return $"{sizeClasses} {CssClass}";
+        }
+    }
+}

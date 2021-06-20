@@ -1,0 +1,112 @@
+﻿@page "/Typography"
+
+@using WindyUI.Typography;
+@using WindyUI.Cards;
+@using WindyUI.Documentation.Components;
+@using System.Text;
+
+<Header HeaderType="HeaderTypes.H3">Typography Components</Header>
+
+<Paragraph BodyType="BodyTypes.Body1" Weight="BodyWeight.Regular">
+    The following components are to be used for minute control of typography, using defaults when you want one font for the headers and another for paragraphs or normal text.
+    If you don't need this level of control or your app doesn't use separate fonts for what I meantioned, you're better off using Tailwind's <a href="https://github.com/tailwindlabs/tailwindcss-typography">Typography plugin</a>.
+</Paragraph>
+
+<Paragraph BodyType="BodyTypes.Body1" Weight="BodyWeight.Regular">
+    Up next are the examples:
+</Paragraph>
+
+<ExtendedCodeTabToggle CssClass="my-4 mx-auto">
+    <DisplayContent>
+        <Header HeaderType="HeaderTypes.H1">H1 Header</Header>
+        <Header HeaderType="HeaderTypes.H2">H2 Header</Header>
+        <Header HeaderType="HeaderTypes.H3">H3 Header</Header>
+        <Header HeaderType="HeaderTypes.H4">H4 Header</Header>
+        <Header HeaderType="HeaderTypes.H5">H5 Header</Header>
+        <Header HeaderType="HeaderTypes.H6">H6 Header</Header>
+
+        <Paragraph BodyType="BodyTypes.Body1" Weight="BodyWeight.Regular">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </Paragraph>
+
+        <Paragraph BodyType="BodyTypes.Body2" Weight="BodyWeight.Regular">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </Paragraph>
+    </DisplayContent>
+    <CodeContent>
+        <CodeHighlights Code="@_typographyComponentsCode" Language="SupportedLanguages.Razor" />
+
+        The enums utilized are the following:
+
+        <CodeHighlights Code="@_enumsCode" Language="SupportedLanguages.CSharp" />
+    </CodeContent>
+</ExtendedCodeTabToggle>
+
+    @code {
+        private string _typographyComponentsCode = "";
+        private string _enumsCode = "";
+
+        protected override void OnInitialized()
+        {
+            StringBuilder codeCreator = new StringBuilder();
+
+            codeCreator.AppendLine(@"<Header HeaderType=""HeaderTypes.H1"">H1 Header</Header>");
+            codeCreator.AppendLine(@"<Header HeaderType=""HeaderTypes.H2"">H2 Header</Header>");
+            codeCreator.AppendLine(@"<Header HeaderType=""HeaderTypes.H3"">H3 Header</Header>");
+            codeCreator.AppendLine(@"<Header HeaderType=""HeaderTypes.H4"">H4 Header</Header>");
+            codeCreator.AppendLine(@"<Header HeaderType=""HeaderTypes.H5"">H5 Header</Header>");
+            codeCreator.AppendLine(@"<Header HeaderType=""HeaderTypes.H6"">H6 Header</Header>");
+            codeCreator.AppendLine();
+            codeCreator.AppendLine(@"<Paragraph BodyType=""BodyTypes.Body1"" Weight=""BodyWeight.Regular"">");
+            codeCreator.AppendLine(@"   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
+            codeCreator.AppendLine(@"   Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.");
+            codeCreator.AppendLine(@"   Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.");
+            codeCreator.AppendLine(@"   Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
+            codeCreator.AppendLine(@"</Paragraph>");
+            codeCreator.AppendLine();
+            codeCreator.AppendLine(@"<Paragraph BodyType=""BodyTypes.Body2"" Weight=""BodyWeight.Regular"">");
+            codeCreator.AppendLine(@"   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
+            codeCreator.AppendLine(@"   Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.");
+            codeCreator.AppendLine(@"   Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.");
+            codeCreator.AppendLine(@"   Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
+            codeCreator.AppendLine(@"</Paragraph>");
+
+            _typographyComponentsCode = codeCreator.ToString();
+            codeCreator.Clear();
+
+            codeCreator.AppendLine("public enum BodyTypes");
+            codeCreator.AppendLine("{");
+            codeCreator.AppendLine("    Body1,");
+            codeCreator.AppendLine("    Body2");
+            codeCreator.AppendLine("}");
+            codeCreator.AppendLine();
+            codeCreator.AppendLine("public enum BodyWeight");
+            codeCreator.AppendLine("{");
+            codeCreator.AppendLine("    Light,");
+            codeCreator.AppendLine("    Regular,");
+            codeCreator.AppendLine("    Medium,");
+            codeCreator.AppendLine("    Semibold");
+            codeCreator.AppendLine("}");
+            codeCreator.AppendLine();
+            codeCreator.AppendLine("public enum HeaderTypes");
+            codeCreator.AppendLine("{");
+            codeCreator.AppendLine("    H1,");
+            codeCreator.AppendLine("    H2,");
+            codeCreator.AppendLine("    H3,");
+            codeCreator.AppendLine("    H4,");
+            codeCreator.AppendLine("    H5,");
+            codeCreator.AppendLine("    H6");
+            codeCreator.AppendLine("}");
+            codeCreator.AppendLine();
+            codeCreator.AppendLine("public enum HeaderWeight");
+            codeCreator.AppendLine("{");
+            codeCreator.AppendLine("    Medium,");
+            codeCreator.AppendLine("    Semibold,");
+            codeCreator.AppendLine("    Bold,");
+            codeCreator.AppendLine("    ExtraBold");
+            codeCreator.AppendLine("}");
+
+            _enumsCode = codeCreator.ToString();
+            codeCreator.Clear();
+        }
+    }

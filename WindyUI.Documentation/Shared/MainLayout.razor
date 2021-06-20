@@ -1,0 +1,33 @@
+﻿@inherits LayoutComponentBase
+@using WindyUI.Navbar;
+
+<div class="grid md:grid-cols-5 h-full">
+    <!--Sidebar-->
+    <Sidebar Options="Options" LogoUrl="" />
+    <main class="md:col-start-2 md:col-span-4">
+        <!--Header-->
+        <Navbar Options="Options" />
+        <!--Page content-->
+        <div class="py-6 px-6">
+            @Body
+        </div>
+    </main>
+
+</div>
+
+@code {
+    public List<NavigationOption> Options { get; set; } = new List<NavigationOption>
+    {
+        new NavigationOption { Link = "/Welcome", Text = "Welcome" },
+        new NavigationOption { Link = "/Typography", Text = "Typography" },
+        new NavigationOption { Link = "/Buttons", Text = "Buttons" },
+        new NavigationOption { Link = "/Table", Text = "Table" },
+        new NavigationOption { Link = "/Icons", Text = "Icons" },
+        new NavigationOption { Link = "/Forms", Text = "Forms" },
+        new NavigationOption { Link = "/Modals", Text = "Modals" },
+        new NavigationOption { Link = "/Notifications", Text = "Notifications" }
+        
+    };
+}
+
+

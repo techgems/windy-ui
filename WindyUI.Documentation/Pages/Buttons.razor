@@ -1,0 +1,219 @@
+﻿@page "/Buttons"
+
+@using WindyUI.Buttons;
+@using WindyUI.Typography;
+@using WindyUI.Cards;
+@using WindyUI.Icons;
+@using WindyUI.Documentation.Components;
+@using System.Text;
+
+<Header HeaderType="HeaderTypes.H2">Buttons</Header>
+
+<Header HeaderType="HeaderTypes.H4">Contained Buttons</Header>
+
+<Paragraph>
+    Buttons to be used for primary actions.
+</Paragraph>
+
+<SimpleCodeTabToggle Code="@_containedButtonCode" CssClass="my-4 mx-auto">
+    <div class="flex justify-between">
+        <Button Color="ButtonColors.Primary" Type="ButtonTypes.Contained">Primary</Button>
+        <Button Color="ButtonColors.Secondary" Type="ButtonTypes.Contained">Secondary</Button>
+        <Button Color="ButtonColors.Neutral" Type="ButtonTypes.Contained">Neutral</Button>
+        <Button Color="ButtonColors.Success" Type="ButtonTypes.Contained">Success</Button>
+        <Button Color="ButtonColors.Danger" Type="ButtonTypes.Contained">Danger</Button>
+        <Button Color="ButtonColors.Info" Type="ButtonTypes.Contained">Info</Button>
+    </div>
+</SimpleCodeTabToggle>
+
+<Header HeaderType="HeaderTypes.H4">Outlined Buttons</Header>
+
+<Paragraph>
+    Buttons to be used for secondary actions.
+</Paragraph>
+
+<SimpleCodeTabToggle Code="@_outlinedButtonCode" CssClass="my-4 mx-auto">
+    <div class="flex justify-between">
+        <Button Color="ButtonColors.Primary" Type="ButtonTypes.Outlined">Primary</Button>
+        <Button Color="ButtonColors.Secondary" Type="ButtonTypes.Outlined">Secondary</Button>
+        <Button Color="ButtonColors.Neutral" Type="ButtonTypes.Outlined">Neutral</Button>
+        <Button Color="ButtonColors.Success" Type="ButtonTypes.Outlined">Success</Button>
+        <Button Color="ButtonColors.Danger" Type="ButtonTypes.Outlined">Danger</Button>
+        <Button Color="ButtonColors.Info" Type="ButtonTypes.Outlined">Info</Button>
+    </div>
+</SimpleCodeTabToggle>
+
+<Header HeaderType="HeaderTypes.H4">Text Buttons</Header>
+
+<Paragraph>
+    Buttons to be used for tertiary actions.
+</Paragraph>
+
+<SimpleCodeTabToggle Code="@_textButtonCode" CssClass="my-4 mx-auto">
+    <div class="flex justify-between">
+        <Button Color="ButtonColors.Primary" Type="ButtonTypes.Text">Primary</Button>
+        <Button Color="ButtonColors.Secondary" Type="ButtonTypes.Text">Secondary</Button>
+        <Button Color="ButtonColors.Neutral" Type="ButtonTypes.Text">Neutral</Button>
+        <Button Color="ButtonColors.Success" Type="ButtonTypes.Text">Success</Button>
+        <Button Color="ButtonColors.Danger" Type="ButtonTypes.Text">Danger</Button>
+        <Button Color="ButtonColors.Info" Type="ButtonTypes.Text">Info</Button>
+    </div>
+</SimpleCodeTabToggle>
+
+<Header HeaderType="HeaderTypes.H4">Recommended use case for buttons</Header>
+
+<Paragraph>
+    Buttons are most often used as triggers for an action. It is therefore important to think of the hierarchy of the actions within the context of our applications.
+</Paragraph>
+
+<Paragraph>
+    The most common use case for these kinds of buttons is the following:
+</Paragraph>
+
+<SimpleCodeTabToggle Code="@_saveCancelPrimaryCode" CssClass="my-4 mx-auto">
+    <div class="flex justify-center">
+        <Button Color="ButtonColors.Primary" Type="ButtonTypes.Contained">Save</Button>
+        <Button Color="ButtonColors.Primary" Type="ButtonTypes.Outlined">Cancel</Button>
+    </div>
+</SimpleCodeTabToggle>
+
+<Paragraph>
+    So, as you can see, together, these two styles of buttons convey properly the hierarchy of expected actions in a given interface. They don't need to use different colors to express the difference in importance in actions.
+</Paragraph>
+<Paragraph>
+    We could perfectly use a different color to exemplify both action hierarchy and contextual color usage for specific situations, such as a delete modal.
+</Paragraph>
+
+<SimpleCodeTabToggle Code="@_saveCancelDangerCode" CssClass="my-4 mx-auto">
+    <div class="flex justify-center">
+        <Button Color="ButtonColors.Danger" Type="ButtonTypes.Contained">Save</Button>
+        <Button Color="ButtonColors.Danger" Type="ButtonTypes.Outlined">Cancel</Button>
+    </div>
+</SimpleCodeTabToggle>
+
+<Paragraph>
+    As for tertiary buttons, their purpose is more niche but they are still relevant:
+</Paragraph>
+
+<SimpleCodeTabToggle Code="@_tertiaryActionsCode" CssClass="my-4 mx-auto">
+    <div class="flex justify-between">
+        <div>
+            <Button Color="ButtonColors.Primary" Type="ButtonTypes.Contained">Save Changes</Button>
+            <Button Color="ButtonColors.Primary" Type="ButtonTypes.Outlined">Cancel</Button>
+        </div>
+        <div>
+            <Button Color="ButtonColors.Primary" Type="ButtonTypes.Text">Delete</Button>
+        </div>
+    </div>
+</SimpleCodeTabToggle>
+
+<Paragraph>
+    As you can see the purpose of a tertiary "text" icon is to grant the ability for the user to perform an action that should be possible within the context, but is the least relevant or even discouraged.
+</Paragraph>
+
+<Header HeaderType="HeaderTypes.H4">Icon Buttons</Header>
+
+<Paragraph>
+    Simple icon buttons for condensing space. Uses all of the icon types in the icons section.
+</Paragraph>
+
+<SimpleCodeTabToggle Code="@_iconButtonsCode" CssClass="my-4 mx-auto">
+    <div class="flex justify-evenly">
+        <IconButton IconType="IconType.Pencil" />
+        <IconButton IconType="IconType.Eye" />
+        <IconButton IconType="IconType.Logout" />
+        <IconButton IconType="IconType.Plus" />
+        <IconButton IconType="IconType.Settings" />
+        <IconButton IconType="IconType.Upload" />
+        <IconButton IconType="IconType.Warning" />
+        <IconButton IconType="IconType.Trash" />
+    </div>
+</SimpleCodeTabToggle>
+
+@code {
+    private string _containedButtonCode = "";
+    private string _outlinedButtonCode = "";
+    private string _textButtonCode = "";
+    private string _saveCancelPrimaryCode = "";
+    private string _saveCancelDangerCode = "";
+    private string _tertiaryActionsCode = "";
+    private string _iconButtonsCode = "";
+
+    protected override void OnInitialized()
+    {
+        StringBuilder codeCreator = new StringBuilder();
+
+        codeCreator.AppendLine(@"<Button Color=""ButtonColors.Primary"" Type=""ButtonTypes.Contained"">Primary</Button>");
+        codeCreator.AppendLine(@"<Button Color=""ButtonColors.Secondary"" Type=""ButtonTypes.Contained"">Secondary</Button>");
+        codeCreator.AppendLine(@"<Button Color=""ButtonColors.Neutral"" Type=""ButtonTypes.Contained"">Neutral</Button>");
+        codeCreator.AppendLine(@"<Button Color=""ButtonColors.Success"" Type=""ButtonTypes.Contained"">Success</Button>");
+        codeCreator.AppendLine(@"<Button Color=""ButtonColors.Danger"" Type=""ButtonTypes.Contained"">Danger</Button>");
+        codeCreator.AppendLine(@"<Button Color=""ButtonColors.Info"" Type=""ButtonTypes.Contained"">Info</Button>");
+
+        _containedButtonCode = codeCreator.ToString();
+        codeCreator.Clear();
+
+        codeCreator.AppendLine(@"<Button Color=""ButtonColors.Primary"" Type=""ButtonTypes.Outlined"">Primary</Button>");
+        codeCreator.AppendLine(@"<Button Color=""ButtonColors.Secondary"" Type=""ButtonTypes.Outlined"">Secondary</Button>");
+        codeCreator.AppendLine(@"<Button Color=""ButtonColors.Neutral"" Type=""ButtonTypes.Outlined"">Neutral</Button>");
+        codeCreator.AppendLine(@"<Button Color=""ButtonColors.Success"" Type=""ButtonTypes.Outlined"">Success</Button>");
+        codeCreator.AppendLine(@"<Button Color=""ButtonColors.Danger"" Type=""ButtonTypes.Outlined"">Danger</Button>");
+        codeCreator.AppendLine(@"<Button Color=""ButtonColors.Info"" Type=""ButtonTypes.Outlined"">Info</Button>");
+
+        _outlinedButtonCode = codeCreator.ToString();
+        codeCreator.Clear();
+
+        codeCreator.AppendLine(@"<Button Color=""ButtonColors.Primary"" Type=""ButtonTypes.Text"">Primary</Button>");
+        codeCreator.AppendLine(@"<Button Color=""ButtonColors.Secondary"" Type=""ButtonTypes.Text"">Secondary</Button>");
+        codeCreator.AppendLine(@"<Button Color=""ButtonColors.Neutral"" Type=""ButtonTypes.Text"">Neutral</Button>");
+        codeCreator.AppendLine(@"<Button Color=""ButtonColors.Success"" Type=""ButtonTypes.Text"">Success</Button>");
+        codeCreator.AppendLine(@"<Button Color=""ButtonColors.Danger"" Type=""ButtonTypes.Text"">Danger</Button>");
+        codeCreator.AppendLine(@"<Button Color=""ButtonColors.Info"" Type=""ButtonTypes.Text"">Info</Button>");
+
+        _textButtonCode = codeCreator.ToString();
+        codeCreator.Clear();
+
+        codeCreator.AppendLine(@"<div class=""flex justify-center"">");
+        codeCreator.AppendLine(@"   <Button Color=""ButtonColors.Primary"" Type=""ButtonTypes.Contained"">Save</Button>");
+        codeCreator.AppendLine(@"   <Button Color=""ButtonColors.Primary"" Type=""ButtonTypes.Outlined"">Cancel</Button>");
+        codeCreator.AppendLine(@"</div>");
+
+        _saveCancelPrimaryCode = codeCreator.ToString();
+        codeCreator.Clear();
+
+        codeCreator.AppendLine(@"<div class=""flex justify-center"">");
+        codeCreator.AppendLine(@"   <Button Color=""ButtonColors.Danger"" Type=""ButtonTypes.Contained"">Save</Button>");
+        codeCreator.AppendLine(@"   <Button Color=""ButtonColors.Danger"" Type=""ButtonTypes.Outlined"">Cancel</Button>");
+        codeCreator.AppendLine(@"</div>");
+
+        _saveCancelDangerCode = codeCreator.ToString();
+        codeCreator.Clear();
+
+        codeCreator.AppendLine(@"<div class=""flex justify-between"">");
+        codeCreator.AppendLine(@"   <div>");
+        codeCreator.AppendLine(@"       <Button Color=""ButtonColors.Primary"" Type=""ButtonTypes.Contained"">Save</Button>");
+        codeCreator.AppendLine(@"       <Button Color=""ButtonColors.Primary"" Type=""ButtonTypes.Outlined"">Cancel</Button>");
+        codeCreator.AppendLine(@"   </div>");
+        codeCreator.AppendLine(@"   <div>");
+        codeCreator.AppendLine(@"       <Button Color=""ButtonColors.Primary"" Type=""ButtonTypes.Text"">Delete</Button>");
+        codeCreator.AppendLine(@"   </div>");
+        codeCreator.AppendLine(@"</div>");
+
+        _tertiaryActionsCode = codeCreator.ToString();
+        codeCreator.Clear();
+
+        codeCreator.AppendLine(@"<div class=""flex justify-evenly"">");
+        codeCreator.AppendLine(@"   <IconButton IconType=""IconType.Pencil"" />");
+        codeCreator.AppendLine(@"   <IconButton IconType=""IconType.Eye"" />");
+        codeCreator.AppendLine(@"   <IconButton IconType=""IconType.Logout"" />");
+        codeCreator.AppendLine(@"   <IconButton IconType=""IconType.Plus"" />");
+        codeCreator.AppendLine(@"   <IconButton IconType=""IconType.Settings"" />");
+        codeCreator.AppendLine(@"   <IconButton IconType=""IconType.Upload"" />");
+        codeCreator.AppendLine(@"   <IconButton IconType=""IconType.Warning"" />");
+        codeCreator.AppendLine(@"   <IconButton IconType=""IconType.Trash"" />");
+        codeCreator.AppendLine(@"</div>");
+
+        _iconButtonsCode = codeCreator.ToString();
+        codeCreator.Clear();
+    }
+}

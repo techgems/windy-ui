@@ -1,0 +1,68 @@
+﻿<!--
+    Modal with two buttons at the end, one for executing an action and the other for canceling it.
+    In this type of modal you can define the content, but you can't override the footer, which will always contain the action buttons.
+-->
+
+@inherits ModalBase
+@typeparam TModel
+
+@using WindyUI.Buttons;
+<CascadingValue Value="this" IsFixed="true">
+    <div class="fixed z-10 inset-0 overflow-y-auto @OpenCloseAnimationClasses">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+
+            <!--Overlay-->
+            <div class="fixed inset-0 transition-opacity @(IsOpen ? "opacity-100" : "opacity-0")">
+                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+            <!--Modal Panel-->
+            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+                <ModalContent>
+                    <EditForm Model="Model" id="@FormId" OnValidSubmit="OnAccept">
+                        @ChildContent
+                    </EditForm>
+                </ModalContent>
+                <ModalFooter>
+                    <div>
+                        <Button OnClick="Close" Color="ButtonColors.Primary" Type="ButtonTypes.Outlined">
+                            @(string.IsNullOrWhiteSpace(CancelButtonText) ? @_defaultCancelButtonText : CancelButtonText)
+                        </Button>
+                        <Button FormId="@FormId" Color="ButtonColors.Primary" Type="ButtonTypes.Contained">
+                            @(string.IsNullOrWhiteSpace(AcceptButtonText) ? _defaultAcceptButtonText : CancelButtonText)
+                        </Button>
+                    </div>
+                </ModalFooter>
+            </div>
+        </div>
+    </div>
+</CascadingValue>
+
+@code {
+    [Parameter]
+    public TModel? Model { get; set; }
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public string FormId { get; set; } = "";
+
+    [Parameter]
+    public EventCallback OnClose { get; set; }
+
+    [Parameter]
+    public EventCallback OnAccept { get; set; }
+
+    private readonly string _defaultCancelButtonText = "Cancel";
+    private readonly string _defaultAcceptButtonText = "Accept";
+
+    [Parameter]
+    public string? AcceptButtonText { get; set; }
+
+    [Parameter]
+    public string? CancelButtonText { get; set; }
+
+}

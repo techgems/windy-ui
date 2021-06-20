@@ -1,0 +1,37 @@
+﻿<div class="bg-white rounded-lg shadow-lg border @ComputedClass @CssClass">
+    @ChildContent
+</div>
+
+@code {
+    [Parameter]
+    public CardSizes Size { get; set; }
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public string CssClass { get; set; } = "";
+
+    private string ComputedClass
+    {
+        get
+        {
+            var sizeClasses = "";
+
+            switch (Size)
+            {
+                case CardSizes.Small:
+                    sizeClasses = "p-4 max-w-lg";
+                    break;
+                case CardSizes.Medium:
+                    sizeClasses = "p-6 max-w-2xl";
+                    break;
+                case CardSizes.Large:
+                    sizeClasses = "p-10 max-w-4xl";
+                    break;
+            }
+
+            return $"w-full {sizeClasses}";
+        }
+    }
+}

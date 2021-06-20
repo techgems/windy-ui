@@ -1,0 +1,47 @@
+﻿@inherits BaseInput<string>
+
+@if(!string.IsNullOrEmpty(Label))
+{
+    <label for="@Id" class="block text-sm font-medium text-gray-700">
+        @Label
+    </label>
+}
+
+<div class="mt-1">
+    <textarea id="@Id"
+              name="@Id"
+              rows="3"
+              value="@Value"
+              @oninput="HandleInput"
+              maxlength="@MaxCharacters"
+              class="@CssClass shadow-sm focus:ring-4 focus:ring-offset-0 focus:ring-primary-light focus:border-primary mt-1 block w-full sm:text-sm border-gray-300 rounded-md resize-none"
+              placeholder="@Placeholder" />
+</div>
+<div class="flex justify-between mt-2 mb-3 mr-3 text-sm @(RemainingCharacters <= 10 ? "text-danger" : "text-gray-500")">
+    @if(CanValidate)
+    {
+        <div class="text-danger text-sm">
+            <ValidationMessage For="@ValidationFor" />
+        </div>
+    }
+    <span>@RemainingCharacters characters left</span>
+</div>
+
+@code {
+    [Parameter]
+    public int MaxCharacters { get; set; } = 500;
+
+    protected int RemainingCharacters
+    {
+        get
+        {
+            if(string.IsNullOrEmpty(Value))
+                return MaxCharacters;
+
+            return MaxCharacters - Value.Count();
+        }
+    }
+
+    [Parameter]
+    public string Placeholder { get; set; } = "";
+}

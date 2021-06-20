@@ -1,0 +1,32 @@
+﻿<div class="@ComputedClass" @onclick="() => { OnClick.InvokeAsync(); }">
+    @Text
+</div>
+
+@code {
+    [Parameter]
+    public string Text { get; set; } = "";
+
+    [Parameter]
+    public TabNavTypes NavType { get; set; } = TabNavTypes.Pills;
+
+    [Parameter]
+    public bool IsSelected { get; set; }
+
+    [Parameter]
+    public EventCallback OnClick { get; set; }
+
+    private string ComputedClass
+    {
+        get
+        {
+            if (NavType == TabNavTypes.Pills)
+            {
+                var pillClasses = IsSelected ? "bg-primary-light cursor-default" : "cursor-pointer";
+
+                return $"{pillClasses} mx-2 px-3 py-2 text-primary rounded-md text-sm font-medium select-none";
+            }
+
+            return "";
+        }
+    }
+}

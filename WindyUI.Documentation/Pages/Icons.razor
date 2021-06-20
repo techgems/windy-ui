@@ -1,0 +1,115 @@
+﻿@page "/Icons"
+
+@using WindyUI.Icons;
+@using WindyUI.Documentation.Components;
+@using WindyUI.Typography;
+@using System.Text;
+
+<div class="grid grid-cols-5 gap-4">
+    <div class="@_containerClasses">
+        <Icon IconType="IconType.Close" CssClass="m-auto" />
+    </div>
+    <div class="@_containerClasses">
+        <Icon IconType="IconType.DotsVertical" CssClass="m-auto" />
+    </div>
+    <div class="@_containerClasses">
+        <Icon IconType="IconType.Download" CssClass="m-auto" />
+    </div>
+    <div class="@_containerClasses">
+        <Icon IconType="IconType.Eye" CssClass="m-auto" />
+    </div>
+    <div class="@_containerClasses">
+        <Icon IconType="IconType.Image" CssClass="m-auto" />
+    </div>
+    <div class="@_containerClasses">
+        <Icon IconType="IconType.ImagePlus" CssClass="m-auto" />
+    </div>
+    <div class="@_containerClasses">
+        <Icon IconType="IconType.Logout" CssClass="m-auto" />
+    </div>
+    <div class="@_containerClasses">
+        <Icon IconType="IconType.Pencil" CssClass="m-auto" />
+    </div>
+    <div class="@_containerClasses">
+        <Icon IconType="IconType.Plus" CssClass="m-auto" />
+    </div>
+    <div class="@_containerClasses">
+        <Icon IconType="IconType.Settings" CssClass="m-auto" />
+    </div>
+    <div class="@_containerClasses">
+        <Icon IconType="IconType.Trash" CssClass="m-auto" />
+    </div>
+    <div class="@_containerClasses">
+        <Icon IconType="IconType.Upload" CssClass="m-auto" />
+    </div>
+    <div class="@_containerClasses">
+        <Icon IconType="IconType.Warning" CssClass="m-auto" />
+    </div>
+</div>
+
+<Header HeaderType="HeaderTypes.H3" CssClass="mt-12">Icons</Header>
+
+<Paragraph BodyType="BodyTypes.Body1" Weight="BodyWeight.Regular">
+    All the icon components use the component <code>Icon</code>. The component receives two main parameters <code>IconType</code> and <code>IconSize</code> with <code>IconSize</code> defaulting as Small or S.
+    Below you will find an example of how to use the component.
+</Paragraph>
+
+<ExtendedCodeTabToggle CssClass="my-4 mx-auto">
+    <DisplayContent>
+        <Icon IconType="IconType.Close" IconSize="IconSizes.S" CssClass="m-auto" />
+    </DisplayContent>
+    <CodeContent>
+        <CodeHighlights Code="@RazorCode" Language="@SupportedLanguages.Razor" />
+        <br />
+
+        The enum definitions with the options are:
+
+        <CodeHighlights Code="@EnumsCode" Language="@SupportedLanguages.CSharp" />
+    </CodeContent>
+</ExtendedCodeTabToggle>
+
+@code {
+    private string _containerClasses = "w-16 h-16 m-auto bg-primary text-primary-text rounded-lg flex";
+
+    private string RazorCode = "";
+    private string EnumsCode = "";
+
+    protected override void OnInitialized()
+    {
+        var codeCreator = new StringBuilder();
+
+        codeCreator.AppendLine(@$"<Icon IconType=""IconType.Close"" IconSize=""IconSizes.S"" CssClass=""m-auto"" />");
+
+        RazorCode = codeCreator.ToString();
+        codeCreator.Clear();
+
+        codeCreator.AppendLine("public enum IconType");
+        codeCreator.AppendLine("    Close,");
+        codeCreator.AppendLine("    DotsVertical,");
+        codeCreator.AppendLine("    Download,");
+        codeCreator.AppendLine("    Eye,");
+        codeCreator.AppendLine("    Logout,");
+        codeCreator.AppendLine("    Pencil,");
+        codeCreator.AppendLine("    Image,");
+        codeCreator.AppendLine("    ImagePlus,");
+        codeCreator.AppendLine("    Plus,");
+        codeCreator.AppendLine("    Settings,");
+        codeCreator.AppendLine("    Trash,");
+        codeCreator.AppendLine("    Upload,");
+        codeCreator.AppendLine("    Warning");
+        codeCreator.AppendLine("}");
+        codeCreator.AppendLine();
+        codeCreator.AppendLine("public enum IconSizes");
+        codeCreator.AppendLine("    XS,");
+        codeCreator.AppendLine("    S,");
+        codeCreator.AppendLine("    M,");
+        codeCreator.AppendLine("    L");
+        codeCreator.AppendLine("}");
+
+        EnumsCode = codeCreator.ToString();
+        base.OnInitialized();
+    }
+}
+
+
+

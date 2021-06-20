@@ -1,0 +1,27 @@
+﻿@inherits BaseInput<string>
+
+<div class="mb-6">
+    <div class=" @CssClass">
+        @if(!string.IsNullOrEmpty(Label))
+        {
+            <label for="@Id" class="block text-sm font-medium text-gray-700">@Label</label>
+        }
+        <select id="@Id" name="@Id" value="@Value" autocomplete="@Label" @oninput="HandleInput" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-4 focus:ring-offset-0 focus:ring-primary-light focus:border-primary sm:text-sm">
+            @foreach(var option in Options)
+            {
+                <option value="@option">@option</option>
+            }
+        </select>
+    </div>
+    @if(CanValidate)
+    {
+        <div class="text-danger text-sm mb-3">
+            <ValidationMessage For="@ValidationFor" />
+        </div>
+    }
+    </div>
+
+@code {
+    [Parameter]
+    public List<string> Options { get; set; } = new List<string>();
+}

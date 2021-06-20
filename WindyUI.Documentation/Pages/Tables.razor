@@ -1,0 +1,117 @@
+﻿@page "/Table"
+
+@using WindyUI.Table;
+@using WindyUI.Documentation.Utils;
+@using WindyUI.Documentation.Components;
+@using WindyUI.Typography;
+@using System.Text;
+
+<Header HeaderType="HeaderTypes.H3">Tables</Header>
+
+<Paragraph BodyType="BodyTypes.Body1" Weight="BodyWeight.Regular">
+    A simple data table to cover the necessities of displaying information.
+</Paragraph>
+
+<ExtendedCodeTabToggle CssClass="my-4 mx-auto">
+    <DisplayContent>
+        <Table>
+            <TableHead>
+                <TableHeader>Mammal Name</TableHeader>
+                <TableHeader>Primary Location</TableHeader>
+                <TableHeader>Weight</TableHeader>
+                <TableHeader>Lifespan</TableHeader>
+                <TableHeader>Habitat</TableHeader>
+            </TableHead>
+            <TableBody>
+                @foreach(var mammal in _mammals)
+                {
+                    <tr>
+                        <TableCell>
+                            @mammal.Name
+                        </TableCell>
+                        <TableCell>
+                            @mammal.PrimaryLocation
+                        </TableCell>
+                        <TableCell>
+                            @mammal.WeightInKilos KG
+                        </TableCell>
+                        <TableCell>
+                            @mammal.LifespanInYears Years
+                        </TableCell>
+                        <TableCell>
+                            @mammal.Habitat
+                        </TableCell>
+                    </tr>
+                }
+            </TableBody>
+        </Table>
+    </DisplayContent>
+    <CodeContent>
+        The basic structure of a table is as follows:
+
+        <CodeHighlights Code="@tableCode" Language="@SupportedLanguages.Razor" />
+
+        Under normal circumstances you will use this with a foreach statement like so:
+
+        <CodeHighlights Code="@tableForeach" Language="@SupportedLanguages.Razor" />
+    </CodeContent>
+</ExtendedCodeTabToggle>
+
+
+@code {
+    private List<MammalData> _mammals = TableDataInitializer.GetMammalData();
+
+    private string tableCode = "";
+    private string tableForeach = "";
+
+    protected override void OnInitialized()
+    {
+        StringBuilder codeCreator = new StringBuilder();
+        codeCreator.AppendLine("<Table>");
+        codeCreator.AppendLine("    <TableHead>");
+        codeCreator.AppendLine("        <TableHeader>Mammal Name</TableHeader>");
+        codeCreator.AppendLine("        <TableHeader>Primary Location</TableHeader>");
+        codeCreator.AppendLine("        <TableHeader>Weight</TableHeader>");
+        codeCreator.AppendLine("        <TableHeader>Lifespan</TableHeader>");
+        codeCreator.AppendLine("        <TableHeader>Habitat</TableHeader>");
+        codeCreator.AppendLine("    </TableHead>");
+        codeCreator.AppendLine("    <TableBody>");
+        codeCreator.AppendLine("        <tr>");
+        codeCreator.AppendLine("            <TableCell>Dog</TableCell>");
+        codeCreator.AppendLine("            <TableCell>The Entire World</TableCell>");
+        codeCreator.AppendLine("            <TableCell>25.9 KG</TableCell>");
+        codeCreator.AppendLine("            <TableCell>12 Years</TableCell>");
+        codeCreator.AppendLine("            <TableCell>Human Settlements</TableCell>");
+        codeCreator.AppendLine("        </tr>");
+        codeCreator.AppendLine("    </TableBody>");
+        codeCreator.AppendLine("</Table>");
+
+        tableCode = codeCreator.ToString();
+        codeCreator.Clear();
+
+        codeCreator.AppendLine("<Table>");
+        codeCreator.AppendLine("    <TableHead>");
+        codeCreator.AppendLine("        <TableHeader>Mammal Name</TableHeader>");
+        codeCreator.AppendLine("        <TableHeader>Primary Location</TableHeader>");
+        codeCreator.AppendLine("        <TableHeader>Weight</TableHeader>");
+        codeCreator.AppendLine("        <TableHeader>Lifespan</TableHeader>");
+        codeCreator.AppendLine("        <TableHeader>Habitat</TableHeader>");
+        codeCreator.AppendLine("    </TableHead>");
+        codeCreator.AppendLine("    <TableBody>");
+        codeCreator.AppendLine("        @foreach(var mammal in _mammals)");
+        codeCreator.AppendLine("        {");
+        codeCreator.AppendLine("            <tr>");
+        codeCreator.AppendLine("                <TableCell>@mammal.Name</TableCell>");
+        codeCreator.AppendLine("                <TableCell>@mammal.PrimaryLocation</TableCell>");
+        codeCreator.AppendLine("                <TableCell>@mammal.WeightInKilos KG</TableCell>");
+        codeCreator.AppendLine("                <TableCell>@mammal.LifespanInYears Years</TableCell>");
+        codeCreator.AppendLine("                <TableCell>@mammal.Habitat</TableCell>");
+        codeCreator.AppendLine("            </tr>");
+        codeCreator.AppendLine("        }");
+        codeCreator.AppendLine("    </TableBody>");
+        codeCreator.AppendLine("</Table>");
+
+        tableForeach = codeCreator.ToString();
+        codeCreator.Clear();
+    }
+}

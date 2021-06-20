@@ -1,0 +1,15 @@
+﻿@inherits BaseInput<string>
+
+@if(!string.IsNullOrEmpty(Label))
+{
+    <label for="@Id" class="block text-sm font-medium">@Label</label>
+}
+
+<input class="mt-3 p-2 focus:outline-none focus:ring focus:ring-primary-light focus:border-primary block w-full shadow-sm sm:text-sm border border-gray-300 rounded-md @CssClass @_fieldCssClasses" id="@Id" name="@Id" value="@Value" @oninput="HandleInput" />
+<!--Div is empty when validation is not done.-->
+@if(CanValidate) 
+{ 
+    <div class="text-danger text-sm mb-3">
+        <ValidationMessage For="@ValidationFor" />
+    </div>
+}

@@ -1,0 +1,28 @@
+﻿@inherits BaseInput<string>
+
+<div class="@CssClass">
+    <span class="block text-sm font-medium text-gray-700 mb-4">
+        @Label
+    </span>
+    @foreach(var option in Options)
+    {
+        <div class="flex items-center mb-4">
+            <input name="@Id" value="@option" checked="@(option == Value)" @onchange="HandleInput" type="radio" class="focus:ring-4 focus:ring-offset-0 focus:ring-primary-light h-4 w-4 text-primary border-gray-300" />
+            <label for="@Id" class="ml-3 block text-sm font-medium text-gray-700">
+                @option
+            </label>
+        </div>
+    }
+</div>
+@if(CanValidate) 
+{
+    <div class="text-danger text-sm mb-3">
+        <ValidationMessage For="@ValidationFor" />
+    </div>
+}
+
+
+@code {
+    [Parameter]
+    public List<string> Options { get; set; } = new List<string>();
+}

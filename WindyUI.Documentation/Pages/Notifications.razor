@@ -1,0 +1,80 @@
+﻿@page "/Notifications"
+
+@using WindyUI.Documentation.Components;
+@using WindyUI.Table;
+@using WindyUI.Typography;
+@using WindyUI.Buttons;
+@using WindyUI.Notifications;
+@using System.Text;
+
+<Header HeaderType="HeaderTypes.H2">Notifications</Header>
+
+<Header HeaderType="HeaderTypes.H3">Snackbar</Header>
+
+<Paragraph>
+    Snackbars are small, pop-up style notifications. Their usage is to give the user feedback of the result of an action that they triggered. Sometimes there are clear ways for the feedback to be given to the user without snackbars,
+    but in other ocassions, snackbars are a good way to notify the user of a change that is otherwise hard to give feedback about. Snackbars are particularly useful to inform the user of the outcome of an action that is triggered in a modal or any other UI element that changes the user's focus.
+</Paragraph>
+
+<SimpleCodeTabToggle Code="@_baseSnackbarExample" Language="SupportedLanguages.Razor">
+    <Snackbar @ref="TopLeftSnackbar" Message="I am a top left snackbar!" Type="SnackbarTypes.Success" />
+    <Button Color="ButtonColors.Primary" Type="ButtonTypes.Contained" OnClick="TopLeftSnackbar.Open">Left top snackbar</Button>
+</SimpleCodeTabToggle>
+
+<Header HeaderType="HeaderTypes.H4">Parameters</Header>
+
+<Table>
+    <TableHead>
+        <TableHeader>Parameter</TableHeader>
+        <TableHeader>Optional?</TableHeader>
+        <TableHeader>Type</TableHeader>
+        <TableHeader>Description</TableHeader>
+    </TableHead>
+    <TableBody>
+        <tr>
+            <TableCell>Message</TableCell>
+            <TableCell>No</TableCell>
+            <TableCell>string</TableCell>
+            <TableCell>The text to display inside the snackbar.</TableCell>
+        </tr>
+        <tr>
+            <TableCell>Type</TableCell>
+            <TableCell>No</TableCell>
+            <TableCell>SnackbarTypes enum</TableCell>
+            <TableCell>The type of snackbar that will be displayed. Types are: Success, Error, Warning, Info.</TableCell>
+        </tr>
+        <tr>
+            <TableCell>Position</TableCell>
+            <TableCell>No</TableCell>
+            <TableCell>SnackbarPositions enum</TableCell>
+            <TableCell>The position the snackbar will be displayed in. Available positions are: TopRight, TopLeft, BottomRight, BottomLeft. Defaults to TopRight.</TableCell>
+        </tr>
+        <tr>
+            <TableCell>Duration</TableCell>
+            <TableCell>Yes</TableCell>
+            <TableCell>int</TableCell>
+            <TableCell>The duration (in milliseconds) that the snackbar will remain open before closing itself. Defaults to 3000 milliseconds.</TableCell>
+        </tr>
+    </TableBody>
+</Table>
+
+@code {
+    public Snackbar TopLeftSnackbar { get; set; } = new Snackbar();
+
+    private string _baseSnackbarExample = "";
+
+    protected override void OnInitialized()
+    {
+        StringBuilder codeCreator = new StringBuilder();
+
+        codeCreator.AppendLine(@"<Snackbar @ref=""TopLeftSnackbar"" Message=""I am a top left snackbar!"" Type=""SnackbarTypes.Success"" />");
+        codeCreator.AppendLine(@"<Button Color=""ButtonColors.Primary"" Type=""ButtonTypes.Contained"" OnClick=""TopLeftSnackbar.Open"">Open Snackbar</Button>");
+        codeCreator.AppendLine();
+        codeCreator.AppendLine("@code {");
+        codeCreator.AppendLine("    public Snackbar TopLeftSnackbar { get; set; } = new Snackbar();");
+        codeCreator.AppendLine("}");
+
+        _baseSnackbarExample = codeCreator.ToString();
+        codeCreator.Clear();
+    }
+}

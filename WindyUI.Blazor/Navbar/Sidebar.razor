@@ -1,0 +1,27 @@
+﻿<div class="hidden md:block md:col-span-1 bg-primary">
+    <nav>
+        <div class="flex-shrink-0 flex items-center p-4">
+            <img class="hidden lg:block h-10 w-auto" src="/img/logos/Lacarte.svg" alt="Logo">
+        </div>
+
+        @foreach (var option in Options)
+        {
+            <SidebarLink Text="@option.Text" Route="@option.Link" />
+        }
+
+        <!--<SidebarLink Text="Users" Route="/Users" />
+        <SidebarLink Text="Restaurants" Route="/Restaurants" />
+        <SidebarLink Text="Tags" Route="/Tags" />
+        <SidebarLink Text="Social Media" Route="/SocialMedia" />
+        <SidebarLink Text="Restaurant Types" Route="/RestaurantTypes" />
+            -->
+    </nav>
+</div>
+
+@code {
+    [Parameter]
+    public List<NavigationOption> Options { get; set; } = new List<NavigationOption>();
+
+    [Parameter]
+    public string LogoUrl { get; set; } = "";
+}
