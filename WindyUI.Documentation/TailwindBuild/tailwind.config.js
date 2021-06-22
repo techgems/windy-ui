@@ -2,42 +2,41 @@ const colors = require('tailwindcss/colors');
 
 //Generated with: https://tailwind.ink/ and this hex: #BF233E
 const customColors = {
-    maroon: {
-        '50': '#fcf9f8',
-        '100': '#fdeef1',
-        '200': '#fbd1e3',
-        '300': '#faa9ca',
-        '400': '#fb719f',
-        '500': '#fc4675',
-        '600': '#f62a51',
-        '700': '#dc2043',
-        '800': '#bf233e',
-        '900': '#8c172c',
+    pine: {
+        '50': '#eef5f5',
+        '100': '#ceeff4',
+        '200': '#97e5e6',
+        '300': '#49d9e8',
+        '400': '#26ada1',
+        '500': '#1b927c',
+        '600': '#187b63',
+        '700': '#175e4e',
+        '800': '#12413a',
+        '900': '#0c282b',
     },
-    mango: {
-        '50': '#fcf9f6',
-        '100': '#fbf4eb',
-        '200': '#f8e3cf',
-        '300': '#f4c8a2',
-        '400': '#f19b61',
-        '500': '#ee7033',
-        '600': '#db4b1f',
-        '700': '#ae381f',
-        '800': '#802c20',
-        '900': '#62231d',
+    olive: {
+        '50': '#fbfaf4',
+        '100': '#f8efbd',
+        '200': '#f0dd83',
+        '300': '#d9b951',
+        '400': '#b98f2c',
+        '500': '#9a7016',
+        '600': '#7d560e',
+        '700': '#60410d',
+        '800': '#412d0b',
+        '900': '#2c1c09',
     },
-    //Here for reference
-    orchid: {
-        '50': '#faf9fa',
-        '100': '#f8f1f8',
-        '200': '#f1daf1',
-        '300': '#eabaea',
-        '400': '#e587de',
-        '500': '#de5ace',
-        '600': '#c339b2',
-        '700': '#922c8c',
-        '800': '#682465',
-        '900': '#4e1e4d',
+    seagreen: {
+        '50': '#f3f6f4',
+        '100': '#e0efea',
+        '200': '#b9e4d1',
+        '300': '#81c8a5',
+        '400': '#3fa776',
+        '500': '#2c8b4e',
+        '600': '#26743a',
+        '700': '#21582f',
+        '800': '#183d24',
+        '900': '#11261b',
     }
 }
 
@@ -63,15 +62,15 @@ module.exports = {
             colors: {
                 primary: {
                     text: 'white',
-                    light: customColors.maroon['200'],
-                    DEFAULT: customColors.maroon['800'],
-                    dark: customColors.maroon['900']
+                    light: customColors.pine['100'],
+                    DEFAULT: customColors.pine['500'],
+                    dark: customColors.pine['600']
                 },
                 secondary: {
                     text: 'white',
-                    light: customColors.mango['100'],
-                    DEFAULT: customColors.mango['600'],
-                    dark: customColors.mango['700']
+                    light: customColors.olive['200'],
+                    DEFAULT: customColors.olive['400'],
+                    dark: customColors.olive['500']
                 },
                 success: {
                     text: 'white',
@@ -100,8 +99,8 @@ module.exports = {
                 neutral: {
                     text: colors.gray['100'],
                     light: colors.gray['200'],
-                    DEFAULT: colors.gray['700'],
-                    dark: colors.gray['800']
+                    DEFAULT: colors.gray['600'],
+                    dark: colors.gray['700']
                 }
             },
             fontFamily: {
