@@ -1,6 +1,7 @@
-﻿<div class="absolute inset-y-0 left-0 flex items-center md:hidden">
+﻿<!--TODO: Make sure this works in conjuntion with colors based on Windy config.-->
+<div class="absolute inset-y-0 left-0 flex items-center md:hidden">
     <!-- Mobile menu button-->
-    <button @onclick="ToggleMenu" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-expanded="false">
+    <button @onclick="ToggleMenu" class="inline-flex items-center justify-center p-2 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-expanded="false">
         <span class="sr-only">Open main menu</span>
         <!--Hamburger menu-->
         <svg class="@( IsOpen ? "block h-6 w-6" : "hidden h-6 w-6" )" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">

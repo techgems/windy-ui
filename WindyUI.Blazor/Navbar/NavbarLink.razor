@@ -1,5 +1,8 @@
-﻿<NavLink href="@Link" ActiveClass="@ActiveClass" class="@InactiveClass" Match="NavLinkMatch.Prefix">
-    @ChildContent
+﻿@using WindyUI.Base;
+@inherits ChildBase<Navbar>
+
+<NavLink href="@Route" ActiveClass="@ActiveClass" class="@InactiveClass" Match="NavLinkMatch.Prefix">
+    @Text
 </NavLink>
 
 @code {
@@ -9,8 +12,8 @@
     private readonly string InactiveClass = "text-primary-text hover:bg-primary px-3 py-2 rounded-md text-sm font-medium";
 
     [Parameter]
-    public RenderFragment? ChildContent { get; set; }
+    public string Route { get; set; } = "";
 
     [Parameter]
-    public string Link { get; set; } = "/#";
+    public string Text { get; set; } = "";
 }

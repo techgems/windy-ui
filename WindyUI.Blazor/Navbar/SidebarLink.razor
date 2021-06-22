@@ -1,4 +1,7 @@
-﻿<NavLink href="@Route" ActiveClass="@_activeClass" class="@_inactiveClass" Match="NavLinkMatch.Prefix">
+﻿@using WindyUI.Base;
+@inherits ChildBase<Sidebar>
+
+<NavLink href="@Route" ActiveClass="@_activeClass" class="@_inactiveClass" Match="NavLinkMatch.Prefix">
     @Text
 </NavLink>
 

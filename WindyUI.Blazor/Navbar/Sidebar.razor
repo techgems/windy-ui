@@ -1,27 +1,17 @@
-﻿<!--TODO: Refactor this to use ChildContent.-->
-<div class="hidden md:block md:col-span-1 bg-primary">
-    <nav>
-        <div class="p-4 @LogoContainerClass">
-            <img class="hidden lg:block h-16 w-auto @LogoClass" src="@LogoUrl" alt="Logo">
-        </div>
+﻿<CascadingValue Value="this" IsFixed="true">
+    <div class="hidden md:block md:col-span-1 bg-primary">
+        <nav>
+            @LogoSection
 
-        @foreach (var option in Options)
-        {
-            <SidebarLink Text="@option.Text" Route="@option.Link" />
-        }
-    </nav>
-</div>
+            @OptionsSection
+        </nav>
+    </div>
+</CascadingValue>
 
 @code {
     [Parameter]
-    public List<NavigationOption> Options { get; set; } = new List<NavigationOption>();
+    public RenderFragment? LogoSection { get; set; }
 
     [Parameter]
-    public string LogoUrl { get; set; } = "";
-
-    [Parameter]
-    public string LogoContainerClass { get; set; } = "";
-
-    [Parameter]
-    public string LogoClass { get; set; } = "";
+    public RenderFragment? OptionsSection { get; set; }
 }
