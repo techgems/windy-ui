@@ -63,8 +63,8 @@ module.exports = {
                 primary: {
                     text: 'white',
                     light: customColors.pine['100'],
-                    DEFAULT: customColors.pine['500'],
-                    dark: customColors.pine['600']
+                    DEFAULT: customColors.pine['400'],
+                    dark: customColors.pine['500']
                 },
                 secondary: {
                     text: 'white',

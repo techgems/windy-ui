@@ -1,7 +1,8 @@
-﻿<div class="hidden md:block md:col-span-1 bg-primary">
+﻿<!--TODO: Refactor this to use ChildContent.-->
+<div class="hidden md:block md:col-span-1 bg-primary">
     <nav>
-        <div class="flex-shrink-0 flex items-center p-4">
-            <img class="hidden lg:block h-16 w-auto" src="@LogoUrl" alt="Logo">
+        <div class="p-4 @LogoContainerClass">
+            <img class="hidden lg:block h-16 w-auto @LogoClass" src="@LogoUrl" alt="Logo">
         </div>
 
         @foreach (var option in Options)
@@ -17,4 +18,10 @@
 
     [Parameter]
     public string LogoUrl { get; set; } = "";
+
+    [Parameter]
+    public string LogoContainerClass { get; set; } = "";
+
+    [Parameter]
+    public string LogoClass { get; set; } = "";
 }
