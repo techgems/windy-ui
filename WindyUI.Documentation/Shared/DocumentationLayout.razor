@@ -1,0 +1,67 @@
+﻿@inherits LayoutComponentBase
+@using WindyUI.Navbar;
+
+<main class="grid md:grid-cols-5 h-full">
+    <!--Sidebar-->
+    <Sidebar>
+        <LogoSection>
+            <div class="p-4 bg-white mr-1">
+                <img class="hidden md:block h-16 w-auto ml-4" src="/img/logos/Isologotipo.svg" alt="Logo">
+            </div>
+        </LogoSection>    
+        <OptionsSection>
+            <SidebarLink Text="Welcome" Route="/Welcome" />
+            <SidebarLink Text="Typography" Route="/Typography" />
+            <SidebarLink Text="Buttons" Route="/Buttons" />
+            <SidebarLink Text="Table" Route="/Table" />
+            <SidebarLink Text="Icons" Route="/Icons" />
+            <SidebarLink Text="Forms" Route="/Forms" />
+            <SidebarLink Text="Modals" Route="/Modals" />
+            <SidebarLink Text="Notifications" Route="/Notifications" />
+        </OptionsSection>
+    </Sidebar>
+    <div class="md:col-start-2 md:col-span-4">
+        <!--Header-->
+        <Navbar>
+            <MobileLogoSection>
+                <img class="flex md:hidden h-10 w-auto" src="/img/logos/Isotipo.svg" alt="Logo">
+            </MobileLogoSection>
+            <RightHandSection>
+                <ProfileMenu />
+            </RightHandSection>
+            <OptionsSection>
+                <div class="hidden lg:block md:ml-6">
+                    <div class="flex lg:space-x-1 xl:space-x-4">
+                        <NavbarLink Text="Welcome" Route="/Welcome" />
+                        <NavbarLink Text="Typography" Route="/Typography" />
+                        <NavbarLink Text="Buttons" Route="/Buttons" />
+                        <NavbarLink Text="Table" Route="/Table" />
+                        <NavbarLink Text="Icons" Route="/Icons" />
+                        <NavbarLink Text="Forms" Route="/Forms" />
+                        <NavbarLink Text="Modals" Route="/Modals" />
+                        <NavbarLink Text="Notifications" Route="/Notifications" />
+                    </div>
+                </div>
+            </OptionsSection>
+            <MobileOptionsSections>
+                <div class="px-2 pt-2 pb-3 md:space-y-1">
+                    <NavbarMobileLink Text="Welcome" Route="/Welcome" />
+                    <NavbarMobileLink Text="Typography" Route="/Typography" />
+                    <NavbarMobileLink Text="Buttons" Route="/Buttons" />
+                    <NavbarMobileLink Text="Table" Route="/Table" />
+                    <NavbarMobileLink Text="Icons" Route="/Icons" />
+                    <NavbarMobileLink Text="Forms" Route="/Forms" />
+                    <NavbarMobileLink Text="Modals" Route="/Modals" />
+                    <NavbarMobileLink Text="Notifications" Route="/Notifications" />
+                </div>
+            </MobileOptionsSections>
+        </Navbar>
+        <!--Page content-->
+        <div class="py-6 px-6">
+            @Body
+        </div>
+    </div>
+
+</main>
+
+

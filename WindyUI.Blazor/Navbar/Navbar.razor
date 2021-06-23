@@ -3,29 +3,25 @@
 
 <CascadingValue Value="this" IsFixed="true">
     <header class="bg-primary-dark shadow-lg">
-        <div class="max-w-7xl mx-auto px-2 md:px-6 2xl:max-w-screen-2xl">
-            <div class="relative flex items-center justify-between h-16">
-                <!--Sidebar for mobile since sidebar is always hidden there.-->
-                <MobileMenu IsOpen="IsMobileMenuOpen" ToggleMenu="ToggleMobileMenu" />
-                <div class="flex-1 flex items-center justify-center md:items-stretch md:justify-start">
-                    <div class="flex-shrink-0 flex items-center p-4">
-                        @MobileLogoSection
-                    </div>
-                    <div class="hidden md:block md:ml-6">
-                        <div class="flex space-x-4">
-                            @OptionsSection
-                        </div>
+        <div class="px-2 md:px-6">
+            <div class="flex justify-between">
+                <div class="relative flex items-center justify-between h-16">
+                    <!--Sidebar for mobile since sidebar is always hidden there.-->
+                    <MobileMenu IsOpen="IsMobileMenuOpen" ToggleMenu="ToggleMobileMenu" />
+                    <div class="flex-1 flex items-center justify-center md:items-stretch md:justify-start">
+                        @OptionsSection
                     </div>
                 </div>
-                <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                <div class="flex-shrink-0 flex items-center p-4">
+                    @MobileLogoSection
+                </div>
+                <div class="flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                     @RightHandSection
                 </div>
             </div>
         </div>
-        <div class="@(!IsMobileMenuOpen ? "block" : "hidden") md:hidden">
-            <div class="px-2 pt-2 pb-3 space-y-1">
-                @MobileOptionsSections
-            </div>
+        <div class="@(!IsMobileMenuOpen ? "block" : "hidden") md:hidden sm:max-w-md">
+            @MobileOptionsSections
         </div>
     </header>
 </CascadingValue>

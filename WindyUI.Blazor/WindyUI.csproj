@@ -3,6 +3,19 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
 	<Nullable>enable</Nullable>
+	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	<Version>0.1.0</Version>
+	<Authors>Carlos Jimenez</Authors>
+	<Company>Tech Gems</Company>
+	<Product>Windy UI</Product>
+	<Description>Windy UI is a Tailwind UI inspired component library for Blazor WASM.</Description>
+	<PackageProjectUrl>https://windy-ui.techgems.net/</PackageProjectUrl>
+	<PackageIcon>Isotipo.svg</PackageIcon>
+	<RepositoryUrl>https://github.com/techgems/windy-ui</RepositoryUrl>
+	<RepositoryType>Public</RepositoryType>
+	<PackageTags>tailwindcss, blazor, blazor-webassembly</PackageTags>
+	<AssemblyVersion>0.0.1.0</AssemblyVersion>
+	<FileVersion>0.0.1.0</FileVersion>
   </PropertyGroup>
 
   
@@ -17,6 +30,13 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\WindyUI.Documentation\wwwroot\img\logos\Isotipo.svg">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

@@ -19,7 +19,8 @@ namespace WindyUI.Icons
         Settings,
         Trash,
         Upload,
-        Warning
+        Warning,
+        Menu
     }
 
     public enum IconSizes
