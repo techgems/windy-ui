@@ -6,41 +6,53 @@
         <div class="px-2 md:px-6">
             <div class="flex justify-between">
                 <div class="relative flex items-center justify-between h-16">
-                    <!--Sidebar for mobile since sidebar is always hidden there.-->
                     <MobileMenu IsOpen="IsMobileMenuOpen" ToggleMenu="ToggleMobileMenu" />
-                    <div class="flex-1 flex items-center justify-center md:items-stretch md:justify-start">
-                        @OptionsSection
-                    </div>
+                </div>
+                <div>
+                    @BrandingFragment
                 </div>
                 <div class="flex-shrink-0 flex items-center p-4">
-                    @MobileLogoSection
+                    @MobileBranding
                 </div>
                 <div class="flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                    @RightHandSection
+                    @NavigationFragment
                 </div>
             </div>
         </div>
         <div class="@(!IsMobileMenuOpen ? "block" : "hidden") md:hidden sm:max-w-md">
-            @MobileOptionsSections
+            @MobileNavigation
         </div>
     </header>
 </CascadingValue>
 
 @code {
+    [Parameter]
+    public RenderFragment? BrandingFragment { get; set; }
 
     [Parameter]
-    public RenderFragment? MobileLogoSection { get; set; }
+    public RenderFragment? NavigationFragment { get; set; }
 
     [Parameter]
-    public RenderFragment? RightHandSection { get; set; }
+    public RenderFragment? MobileBranding { get; set; }
 
     [Parameter]
-    public RenderFragment? OptionsSection { get; set; }
+    public RenderFragment? MobileNavigation { get; set; }
 
     [Parameter]
-    public RenderFragment? MobileOptionsSections { get; set; }
+    public NavbarColors Color { get; set; } = NavbarColors.Primary;
 
-    public bool IsMobileMenuOpen { get; set; } = false;
+    private string ColorClass
+    {
+        get
+        {
+            return "";
+        }
+    }
+
+    [Parameter]
+    public string CssClass { get; set; } = "";
+
+    private bool IsMobileMenuOpen { get; set; } = false;
 
     public void ToggleMobileMenu()
     {

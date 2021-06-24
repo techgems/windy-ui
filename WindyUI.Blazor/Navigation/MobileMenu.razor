@@ -1,0 +1,38 @@
+﻿@using WindyUI.Icons;
+@using WindyUI.Base;
+
+@inherits ChildBase<Navbar>
+
+<div class="absolute inset-y-0 left-0 flex items-center md:hidden">
+    <!-- Mobile menu button-->
+    <button @onclick="ToggleMenu" class="inline-flex items-center justify-center p-2 rounded-md text-primary-text focus:outline-none ring-2 ring-inset ring-primary-text" aria-expanded="false">
+        <span class="sr-only">Open main menu</span>
+        <!--Hamburger menu-->
+        <Icon IconType="IconType.Menu" IconSize="IconSizes.XS" CssClass="@( IsOpen ? "block" : "hidden" )" />
+
+        <!--Close icon-->
+        <Icon IconType="IconType.Close" IconSize="IconSizes.XS" CssClass="@( IsOpen ? "hidden" : "block" )" />
+    </button>
+</div>
+
+@code {
+    [Parameter]
+    public bool IsOpen { get; set; }
+
+    [Parameter]
+    public NavbarColors Color { get; set; }
+
+    public string ColorClass
+    {
+        get
+        {
+            return "";
+        }
+    }
+
+    [Parameter]
+    public string CssClass { get; set; } = "";
+
+    [Parameter]
+    public EventCallback ToggleMenu { get; set; }
+}
