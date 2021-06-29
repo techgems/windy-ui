@@ -1,8 +1,8 @@
 ﻿@using WindyUI.Base;
 @inherits ChildBase<Navbar>
 
-<NavLink href="@Route" ActiveClass="@ActiveClass" class="@InactiveClass" Match="NavLinkMatch.Prefix">
-    @Text
+<NavLink href="@Route" ActiveClass="@ActiveClass" class="@DefinedClass" Match="NavLinkMatch.Prefix">
+    @ChildContent
 </NavLink>
 
 @code {
@@ -11,9 +11,14 @@
 
     private readonly string InactiveClass = "text-primary-text hover:bg-primary px-3 py-2 rounded-md text-sm font-medium";
 
-    [Parameter]
-    public string Route { get; set; } = "";
+    private string DefinedClass { get { return  $"{InactiveClass} {CssClass}"; } }
 
     [Parameter]
-    public string Text { get; set; } = "";
+    public string CssClass { get; set; } = "";
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public string Route { get; set; } = "";
 }

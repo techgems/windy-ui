@@ -17,13 +17,17 @@
         </BrandingFragment>
         <NavigationFragment>
             <div class="flex lg:space-x-1 xl:space-x-4">
-                <NavbarMobileLink Text="Documentation" Route="/Welcome" />
-                <NavbarMobileLink Text="Github" Route="/Welcome" />
+                <NavbarLink CssClass="w-12" Route="/Welcome">
+                    <img src="/img/icons/github-brands.svg" />
+                </NavbarLink>
+                <a class="text-primary-text w-12" href="https://ko-fi.com/techgems" target="_blank">
+                    <img src="/img/icons/donate-solid.svg" />
+                </a>
             </div>
         </NavigationFragment>
     </Navbar>
     <!--Page content-->
-    <div class="py-6 px-6">
+    <div class="py-6 px-6 mx-24">
         @Body
     </div>
 </main>
