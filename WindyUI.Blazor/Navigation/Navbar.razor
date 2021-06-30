@@ -2,10 +2,13 @@
 
 
 <CascadingValue Value="this" IsFixed="true">
-    <header class="bg-primary-dark shadow-lg lg:h-16 pt-3">
+    <header class="@TopLevelCssClass">
         <div class="flex justify-between px-2 md:px-6">
             <div class="lg:hidden relative flex items-center justify-between h-16">
-                <MobileMenu IsOpen="IsMobileMenuOpen" ToggleMenu="ToggleMobileMenu" />
+                @if(HasMobileMenu)
+                {
+                    <MobileMenu IsOpen="IsMobileMenuOpen" ToggleMenu="ToggleMobileMenu" />
+                }
             </div>
             <div class="lg:hidden flex-shrink-0 flex items-center p-4">
                 @MobileBrandingFragment
@@ -39,21 +42,53 @@
     [Parameter]
     public NavbarColors Color { get; set; } = NavbarColors.Primary;
 
-    private string ColorClass
+    [Parameter]
+    public EventCallback OnMobileMenuClick { get; set; }
+
+    [Parameter]
+    public bool HasMobileMenu { get; set; } = true;
+
+    private string TopLevelCssClass
     {
         get
         {
-            return "";
+            var baseClass = "shadow-lg lg:h-16 pt-3";
+            var colorClass = "";
+
+            switch(Color)
+            {
+                case NavbarColors.Primary:
+                    colorClass = $"bg-primary";
+                    break;
+                case NavbarColors.PrimaryDark:
+                    colorClass = "bg-primary-dark";
+                    break;
+                case NavbarColors.PrimaryLight:
+                    colorClass = "bg-primary-light";
+                    break;
+                case NavbarColors.Secondary:
+                    colorClass = "bg-secondary";
+                    break;
+                case NavbarColors.SecondaryDark:
+                    colorClass = "bg-secondary-dark";
+                    break;
+                case NavbarColors.SecondaryLight:
+                    colorClass = "bg-primary-light";
+                    break;
+            }
+
+            return $"{colorClass} {baseClass}";
         }
     }
 
-    [Parameter]
-    public string CssClass { get; set; } = "";
-
     private bool IsMobileMenuOpen { get; set; } = false;
 
-    public void ToggleMobileMenu()
+    private async Task ToggleMobileMenu()
     {
         IsMobileMenuOpen = !IsMobileMenuOpen;
+        if(OnMobileMenuClick.HasDelegate)
+        {
+            await OnMobileMenuClick.InvokeAsync();
+        }
     }
 }
