@@ -4,26 +4,27 @@
 <CascadingValue Value="this" IsFixed="true">
     <header class="@TopLevelCssClass">
         <div class="flex justify-between px-2 md:px-6">
-            <div class="lg:hidden relative flex items-center justify-between h-16">
-                @if(HasMobileMenu)
+            <div class="md:hidden relative flex items-center justify-between">
+                @if (HasMobileMenu)
                 {
                     <MobileMenu IsOpen="IsMobileMenuOpen" ToggleMenu="ToggleMobileMenu" />
                 }
             </div>
-            <div class="lg:hidden flex-shrink-0 flex items-center p-4">
+            <div class="md:hidden flex-shrink-0 flex items-center p-4">
                 @MobileBrandingFragment
             </div>
-            <div class="hidden lg:flex lg:items-center">
+            <div class="md:hidden flex-shrink-0 flex items-center p-4"></div>
+            <div class="hidden md:flex md:items-center">
                 @BrandingFragment
             </div>
-            <div class="pr-2 hidden lg:flex lg:items-center md:ml-6">
+            <div class="pr-2 hidden md:flex md:items-center md:ml-6">
                 @NavigationFragment
             </div>
         </div>
-        <div class="@(!IsMobileMenuOpen ? "block" : "hidden") md:hidden sm:max-w-md">
-            @MobileNavigationFragment
-        </div>
     </header>
+    <div class="@(!IsMobileMenuOpen ? "block" : "hidden") md:hidden sm:max-w-md @MobileMenuColorCss">
+        @MobileNavigationFragment
+    </div>
 </CascadingValue>
 
 @code {
@@ -48,11 +49,39 @@
     [Parameter]
     public bool HasMobileMenu { get; set; } = true;
 
+    private string MobileMenuColorCss
+    {
+        get
+        {
+            var mobileColor = "";
+
+            switch (Color)
+            {
+                case NavbarColors.Primary:
+                    mobileColor = $"bg-primary-dark";
+                    break;
+                case NavbarColors.PrimaryDark:
+                case NavbarColors.PrimaryLight:
+                    mobileColor = "bg-primary";
+                    break;
+                case NavbarColors.Secondary:
+                    mobileColor = "bg-secondary-dark";
+                    break;
+                case NavbarColors.SecondaryDark:
+                case NavbarColors.SecondaryLight:
+                    mobileColor = "bg-secondary";
+                    break;
+            }
+
+            return mobileColor;
+        }
+    }
+
     private string TopLevelCssClass
     {
         get
         {
-            var baseClass = "shadow-lg lg:h-16 pt-3";
+            var baseClass = "shadow-lg h-20 md:pt-4";
             var colorClass = "";
 
             switch(Color)
