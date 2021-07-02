@@ -1,26 +1,25 @@
-﻿@using WindyUI.Base;
-@inherits ChildBase<Navbar>
-
-<!--TO DO: Get color from parent to determine which color to use.-->
+﻿@inherits BaseNavigationLink;
 
 <NavLink href="@Route" ActiveClass="@ActiveClass" class="@DefinedClass" Match="NavLinkMatch.Prefix">
     @ChildContent
 </NavLink>
 
 @code {
+    private string DefinedClass { get { return $"{InactiveClass} {CssClass}"; } }
 
-    private readonly string ActiveClass = "bg-primary text-primary-text px-3 py-2 rounded-md text-sm font-medium";
+    private string ActiveClass
+    {
+        get
+        {
+            return $"{ActiveColorClass} px-3 py-2 rounded-md text-sm font-medium";
+        }
+    }
 
-    private readonly string InactiveClass = "text-primary-text hover:text-primary-dark px-3 py-2 rounded-md text-sm font-medium";
-
-    private string DefinedClass { get { return  $"{InactiveClass} {CssClass}"; } }
-
-    [Parameter]
-    public string CssClass { get; set; } = "";
-
-    [Parameter]
-    public RenderFragment? ChildContent { get; set; }
-
-    [Parameter]
-    public string Route { get; set; } = "";
+    private string InactiveClass
+    {
+        get
+        {
+            return $"{InactiveColorClass} px-3 py-2 rounded-md text-sm font-medium";
+        }
+    }
 }

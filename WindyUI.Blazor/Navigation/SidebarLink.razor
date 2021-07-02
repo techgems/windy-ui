@@ -1,21 +1,19 @@
 ﻿@using WindyUI.Base;
-@inherits ChildBase<Sidebar>
+@inherits BaseNavigationLink;
 
-<NavLink href="@Route" ActiveClass="@_activeClass" class="@_inactiveClass" Match="NavLinkMatch.Prefix">
-    @Text
+<NavLink href="@Route" ActiveClass="@ActiveColorClass" class="@InactiveClass" Match="NavLinkMatch.Prefix">
+    @ChildContent
 </NavLink>
 
 
 @code {
-    [Parameter]
-    public NavigationColors Color { get; set; }
+    private string DefinedClass { get { return $"{InactiveClass} {CssClass}"; } }
 
-    [Parameter]
-    public string Text { get; set; } = "";
-
-    [Parameter]
-    public string Route { get; set; } = "";
-
-    private readonly string _activeClass = "text-primary-light bg-primary-dark";
-    private readonly string _inactiveClass = "hover:bg-primary-dark hover:text-primary-light text-primary-text p-2 hover:bg-primary-dark pl-6 py-3 block";
+    private string InactiveClass
+    {
+        get
+        {
+            return $"{InactiveColorClass} p-2 pl-6 py-3 block";
+        }
+    }
 }

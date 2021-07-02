@@ -1,14 +1,18 @@
-﻿<NavLink href="@Route" ActiveClass="@_activeClass" class="text-primary-text block px-3 py-2 rounded-md text-base font-medium" Match="NavLinkMatch.Prefix">
-    @Text
+﻿@inherits BaseNavigationLink;
+
+<NavLink href="@Route" ActiveClass="@ActiveColorClass" class="@DefinedClass" Match="NavLinkMatch.Prefix">
+    @ChildContent
 </NavLink>
 
 @code {
 
-    private string _activeClass = "bg-primary";
+    private string DefinedClass { get { return $"{InactiveClass} {CssClass}"; } }
 
-    [Parameter]
-    public string Route { get; set; } = "";
-
-    [Parameter]
-    public string Text { get; set; } = "";
+    private string InactiveClass
+    {
+        get
+        {
+            return $"{InactiveColorClass} block px-3 py-2 rounded-md text-base font-medium";
+        }
+    }
 }
