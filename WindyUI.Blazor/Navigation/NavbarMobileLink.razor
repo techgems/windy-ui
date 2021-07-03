@@ -1,10 +1,37 @@
 ﻿@inherits BaseNavigationLink;
 
-<NavLink href="@Route" ActiveClass="@ActiveColorClass" class="@DefinedClass" Match="NavLinkMatch.Prefix">
+<NavLink href="@Route" class="@DefinedClass" Match="NavLinkMatch.Prefix">
     @ChildContent
 </NavLink>
 
 @code {
+
+    private string TextColorClass
+    {
+        get
+        {
+            var textColor = "";
+
+            if(Parent is not null)
+            {
+                switch(Parent.Color)
+                {
+                    case NavigationColors.Primary:
+                    case NavigationColors.PrimaryDark:
+                    case NavigationColors.PrimaryLight:
+                        textColor = "text-primary-text";
+                        break;
+                    case NavigationColors.Secondary:
+                    case NavigationColors.SecondaryDark:
+                    case NavigationColors.SecondaryLight:
+                        textColor = "text-secondary-text";
+                        break;
+                }
+            }
+
+            return textColor;
+        }
+    }
 
     private string DefinedClass { get { return $"{InactiveClass} {CssClass}"; } }
 
@@ -12,7 +39,7 @@
     {
         get
         {
-            return $"{InactiveColorClass} block px-3 py-2 rounded-md text-base font-medium";
+            return $"block {TextColorClass} px-3 py-2 rounded-md text-base font-medium";
         }
     }
 }

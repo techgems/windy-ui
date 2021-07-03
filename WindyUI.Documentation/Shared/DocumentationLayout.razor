@@ -22,43 +22,74 @@
     </Sidebar>
     <div class="md:col-start-2 md:col-span-4">
         <!--Header-->
-        <Navbar>
-            <MobileLogoSection>
+        <WindyUI.Navigation.Navbar Color="Navigation.NavigationColors.PrimaryDark">
+            <MobileBrandingFragment>
                 <img class="flex md:hidden h-10 w-auto" src="/img/logos/Isotipo-Invertido.svg" alt="Logo">
-            </MobileLogoSection>
-            <OptionsSection>
+            </MobileBrandingFragment>
+            <BrandingFragment>
                 <div class="hidden lg:block md:ml-6">
                     <div class="flex lg:space-x-1 xl:space-x-4">
-                        <NavbarLink Text="Welcome" Route="/Welcome" />
-                        <NavbarLink Text="Typography" Route="/Typography" />
-                        <NavbarLink Text="Buttons" Route="/Buttons" />
-                        <NavbarLink Text="Table" Route="/Table" />
-                        <NavbarLink Text="Icons" Route="/Icons" />
-                        <NavbarLink Text="Forms" Route="/Forms" />
-                        <NavbarLink Text="Modals" Route="/Modals" />
-                        <NavbarLink Text="Notifications" Route="/Notifications" />
+                        <WindyUI.Navigation.NavbarLink Route="/Welcome">
+                            Welcome
+                        </WindyUI.Navigation.NavbarLink>
+                        <WindyUI.Navigation.NavbarLink Route="/Typography">
+                            Typography
+                        </WindyUI.Navigation.NavbarLink>
+                        <WindyUI.Navigation.NavbarLink Route="/Buttons">
+                            Buttons
+                        </WindyUI.Navigation.NavbarLink>
+                        <WindyUI.Navigation.NavbarLink Route="/Table">
+                            Table
+                        </WindyUI.Navigation.NavbarLink>
+                        <WindyUI.Navigation.NavbarLink Route="/Icons">
+                            Icons
+                        </WindyUI.Navigation.NavbarLink>
+                        <WindyUI.Navigation.NavbarLink Route="/Forms">
+                            Forms
+                        </WindyUI.Navigation.NavbarLink>
+                        <WindyUI.Navigation.NavbarLink Route="/Modals">
+                            Modals
+                        </WindyUI.Navigation.NavbarLink>
+                        <WindyUI.Navigation.NavbarLink Route="/Notifications">
+                            Notifications
+                        </WindyUI.Navigation.NavbarLink>
                     </div>
                 </div>
-            </OptionsSection>
-            <MobileOptionsSections>
+            </BrandingFragment>
+            <MobileNavigationFragment>
                 <div class="px-2 pt-2 pb-3 md:space-y-1">
-                    <NavbarMobileLink Text="Welcome" Route="/Welcome" />
-                    <NavbarMobileLink Text="Typography" Route="/Typography" />
-                    <NavbarMobileLink Text="Buttons" Route="/Buttons" />
-                    <NavbarMobileLink Text="Table" Route="/Table" />
-                    <NavbarMobileLink Text="Icons" Route="/Icons" />
-                    <NavbarMobileLink Text="Forms" Route="/Forms" />
-                    <NavbarMobileLink Text="Modals" Route="/Modals" />
-                    <NavbarMobileLink Text="Notifications" Route="/Notifications" />
+                    <WindyUI.Navigation.NavbarMobileLink Route="/Welcome">
+                        Welcome
+                        </WindyUI.Navigation.NavbarMobileLink>
+                    <WindyUI.Navigation.NavbarMobileLink Route="/Typography">
+                        Typography
+                    </WindyUI.Navigation.NavbarMobileLink>
+                    <WindyUI.Navigation.NavbarMobileLink Route="/Buttons">
+                        Buttons
+                    </WindyUI.Navigation.NavbarMobileLink>
+                    <WindyUI.Navigation.NavbarMobileLink Route="/Table">
+                        Table
+                    </WindyUI.Navigation.NavbarMobileLink>
+                    <WindyUI.Navigation.NavbarMobileLink Route="/Icons">
+                        Icons
+                    </WindyUI.Navigation.NavbarMobileLink>
+                    <WindyUI.Navigation.NavbarMobileLink Route="/Forms">
+                        Forms
+                    </WindyUI.Navigation.NavbarMobileLink>
+                    <WindyUI.Navigation.NavbarMobileLink Route="/Modals">
+                        Modals
+                    </WindyUI.Navigation.NavbarMobileLink>
+                    <WindyUI.Navigation.NavbarMobileLink Route="/Notifications">
+                        Notifications
+                    </WindyUI.Navigation.NavbarMobileLink>
                 </div>
-            </MobileOptionsSections>
-        </Navbar>
+            </MobileNavigationFragment>
+        </WindyUI.Navigation.Navbar>
         <!--Page content-->
         <div class="py-6 px-6">
             @Body
         </div>
     </div>
-
 </main>
 
 

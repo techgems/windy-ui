@@ -8,6 +8,7 @@ namespace WindyUI.Navigation
 {
     public enum NavigationColors
     {
+        Inherit = -1,
         Primary,
         PrimaryLight,
         PrimaryDark,

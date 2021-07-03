@@ -4,13 +4,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WindyUI.Base;
 
 namespace WindyUI.Navigation
 {
-    public class BaseNavigationLink : ComponentBase
+    public class BaseNavigationLink : ChildBase<NavigationParentBase>
     {
+        protected override void OnInitialized()
+        {
+            if(Parent is not null && Color == NavigationColors.Inherit)
+            {
+                Color = Parent.Color;
+            }
+        }
+
         [Parameter]
-        public NavigationColors Color { get; set; } = NavigationColors.Primary;
+        public NavigationColors Color { get; set; } = NavigationColors.Inherit;
 
         [Parameter]
         public string CssClass { get; set; } = "";

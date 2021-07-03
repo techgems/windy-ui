@@ -1,5 +1,6 @@
 ﻿@inject NavigationManager NavigationManager;
 
+@inherits NavigationParentBase
 
 <CascadingValue Value="this" IsFixed="true">
     <header class="@TopLevelCssClass">
@@ -22,7 +23,7 @@
             </div>
         </div>
     </header>
-    <div class="@(!IsMobileMenuOpen ? "block" : "hidden") md:hidden sm:max-w-md @MobileMenuColorCss">
+    <div class="@(!IsMobileMenuOpen ? "block" : "hidden") md:hidden md:max-w-md @MobileMenuColorCss">
         @MobileNavigationFragment
     </div>
 </CascadingValue>
@@ -39,9 +40,6 @@
 
     [Parameter]
     public RenderFragment? MobileNavigationFragment { get; set; }
-
-    [Parameter]
-    public NavigationColors Color { get; set; } = NavigationColors.Primary;
 
     [Parameter]
     public EventCallback OnMobileMenuClick { get; set; }
@@ -81,7 +79,7 @@
     {
         get
         {
-            var baseClass = "shadow-lg h-20 md:pt-4";
+            var baseClass = "shadow-lg h-16 md:pt-3";
 
             return $"{ColorSelector.GetBackgroundColor(Color)} {baseClass}";
         }
