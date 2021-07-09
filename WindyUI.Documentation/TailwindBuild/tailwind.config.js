@@ -1,6 +1,6 @@
 const colors = require('tailwindcss/colors');
 
-//Generated with: https://tailwind.ink/ and this hex: #BF233E
+//Generated with: https://tailwind.ink/
 const customColors = {
     pine: {
         '50': '#eef5f5',
@@ -42,7 +42,7 @@ const customColors = {
 
 module.exports = {
     purge: [],
-    darkMode: false, // or 'media' or 'class'
+    darkMode: false, // At this moment, Windy UI components do not support dark mode.
     theme: {
         colors: {
             transparent: 'transparent',

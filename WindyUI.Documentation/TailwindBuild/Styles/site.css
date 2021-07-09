@@ -5,42 +5,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.select {
-
-}
-
-.label {
-    @apply block text-sm font-medium text-gray-700;
-}
-
-.file-upload {
-
-}
-
-.input-group {
-    @apply mt-1 flex rounded-md shadow-sm;
-
-    span {
-        @apply inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm;
-    }
-
-    input {
-        @apply focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300;
-    }
-}
-
-.input {
-    @apply mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md;
-}
-
-.checkbox {
-
-}
-
-.radio {
-
-}
-
 #blazor-error-ui {
     background: lightyellow;
     bottom: 0;
