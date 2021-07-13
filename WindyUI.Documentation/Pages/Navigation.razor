@@ -1,7 +1,135 @@
 ﻿@page "/Navigation"
 
-<h3>Navigation</h3>
+@using WindyUI.Typography;
+@using WindyUI.Documentation.Components;
+@using WindyUI.Documentation.Components.Navigation;
+@using System.Text;
+
+<Header HeaderType="HeaderTypes.H2">Navigation</Header>
+
+<Paragraph>
+    This section is for navigation components such as Sidebars and Navbars and where in a Windy UI project you would place these components.
+</Paragraph>
+
+<Paragraph>
+    Because of the way these components work, they are meant to be top level components, which means you'll likely add them to a specific Blazor Layout component.
+</Paragraph>
+
+<Paragraph>
+    In the following code block you'll find how this documentation uses both the sidebar and navbar components:
+</Paragraph>
+
+<ExtendedCodeTabToggle CssClass="my-4 mx-auto">
+    <DisplayContent>
+        <LayoutSample />
+    </DisplayContent>
+    <CodeContent>
+        <CodeHighlights Code="@_navigationCode" Language="@SupportedLanguages.Razor" />
+    </CodeContent>
+</ExtendedCodeTabToggle>
 
 @code {
+    private string _navigationCode;
 
+    protected override void OnInitialized()
+    {
+        StringBuilder codeCreator = new StringBuilder();
+        codeCreator.AppendLine("@inherits LayoutComponentBase");
+        codeCreator.AppendLine("@using WindyUI.Navigation;");
+        codeCreator.AppendLine();
+        codeCreator.AppendLine(@"<main class=""grid md:grid-cols-5 h-full"">");
+        codeCreator.AppendLine(@"   <Sidebar Color=""Navigation.NavigationColors.Primary"" CssClass=""md:col-span-1"">");
+        codeCreator.AppendLine(@"        <BrandingFragment>");
+        codeCreator.AppendLine(@"            <div class=""p-4 mr-1"">");
+        codeCreator.AppendLine(@"                <img class=""hidden md:block h-16 w-auto ml-4"" src=""/img/logos/Isologotipo-Invertido.svg"" alt=""Logo"">");
+        codeCreator.AppendLine(@"            </div>");
+        codeCreator.AppendLine(@"        </BrandingFragment>");
+        codeCreator.AppendLine(@"        <NavigationFragment>");
+        codeCreator.AppendLine(@"            <SidebarLink Route=""GetStarted"">Get Started</SidebarLink>");
+        codeCreator.AppendLine(@"            <SidebarLink Route=""Navigation"">Navigation</SidebarLink>");
+        codeCreator.AppendLine(@"            <SidebarLink Route=""Typography"">Typography</SidebarLink>");
+        codeCreator.AppendLine(@"            <SidebarLink Route=""Buttons"">Buttons</SidebarLink>");
+        codeCreator.AppendLine(@"            <SidebarLink Route=""Table"">Table</SidebarLink>");
+        codeCreator.AppendLine(@"            <SidebarLink Route=""Icons"">Icons</SidebarLink>");
+        codeCreator.AppendLine(@"            <SidebarLink Route=""Forms"">Forms</SidebarLink>");
+        codeCreator.AppendLine(@"            <SidebarLink Route=""Modals"">Modals</SidebarLink>");
+        codeCreator.AppendLine(@"            <SidebarLink Route=""Notifications"">Notifications</SidebarLink>");
+        codeCreator.AppendLine(@"        </NavigationFragment>");
+        codeCreator.AppendLine(@"   </Sidebar>");
+        codeCreator.AppendLine(@"    <div class=""md:col-start-2 md:col-span-4"">");
+        codeCreator.AppendLine(@"        <Navbar Color=""Navigation.NavigationColors.PrimaryDark"">");
+        codeCreator.AppendLine(@"            <MobileBrandingFragment>");
+        codeCreator.AppendLine(@"                <img class=""flex md:hidden h-10 w-auto"" src=""/img/logos/Isotipo-Invertido.svg"" alt=""Logo"">");
+        codeCreator.AppendLine(@"            </MobileBrandingFragment>");
+        codeCreator.AppendLine(@"            <BrandingFragment>");
+        codeCreator.AppendLine(@"                <div class=""hidden lg:block md:ml-6"">");
+        codeCreator.AppendLine(@"                    <div class=""flex lg:space-x-1 xl:space-x-4"">");
+        codeCreator.AppendLine(@"                        <NavbarLink Route=""GetStarted"">");
+        codeCreator.AppendLine(@"                            Get Started");
+        codeCreator.AppendLine(@"                        </NavbarLink>");
+        codeCreator.AppendLine(@"                        <NavbarLink Route=""Navigation"">");
+        codeCreator.AppendLine(@"                            Navigation");
+        codeCreator.AppendLine(@"                        </NavbarLink>");
+        codeCreator.AppendLine(@"                        <NavbarLink Route=""Typography"">");
+        codeCreator.AppendLine(@"                            Typography");
+        codeCreator.AppendLine(@"                        </NavbarLink>");
+        codeCreator.AppendLine(@"                        <NavbarLink Route=""Buttons"">");
+        codeCreator.AppendLine(@"                            Buttons");
+        codeCreator.AppendLine(@"                        </NavbarLink>");
+        codeCreator.AppendLine(@"                        <NavbarLink Route=""Table"">");
+        codeCreator.AppendLine(@"                            Table");
+        codeCreator.AppendLine(@"                        </NavbarLink>");
+        codeCreator.AppendLine(@"                        <NavbarLink Route=""Icons"">");
+        codeCreator.AppendLine(@"                            Icons");
+        codeCreator.AppendLine(@"                        </NavbarLink>");
+        codeCreator.AppendLine(@"                        <NavbarLink Route=""Forms"">");
+        codeCreator.AppendLine(@"                            Forms");
+        codeCreator.AppendLine(@"                        </NavbarLink>");
+        codeCreator.AppendLine(@"                        <NavbarLink Route=""Modals"">");
+        codeCreator.AppendLine(@"                            Modals");
+        codeCreator.AppendLine(@"                        </NavbarLink>");
+        codeCreator.AppendLine(@"                        <NavbarLink Route=""Notifications"">");
+        codeCreator.AppendLine(@"                            Notifications");
+        codeCreator.AppendLine(@"                        </NavbarLink>");
+        codeCreator.AppendLine(@"                    </div>");
+        codeCreator.AppendLine(@"                </div>");
+        codeCreator.AppendLine(@"            </BrandingFragment>");
+        codeCreator.AppendLine(@"            <MobileNavigationFragment>");
+        codeCreator.AppendLine(@"                <div class=""px-2 pt-2 pb-3 md:space-y-1"">");
+        codeCreator.AppendLine(@"                    <NavbarMobileLink Route=""Welcome"">");
+        codeCreator.AppendLine(@"                        Welcome");
+        codeCreator.AppendLine(@"                    </NavbarMobileLink>");
+        codeCreator.AppendLine(@"                    <NavbarMobileLink Route=""Typography"">");
+        codeCreator.AppendLine(@"                        Typography");
+        codeCreator.AppendLine(@"                    </NavbarMobileLink>");
+        codeCreator.AppendLine(@"                    <NavbarMobileLink Route=""Buttons"">");
+        codeCreator.AppendLine(@"                        Buttons");
+        codeCreator.AppendLine(@"                    </NavbarMobileLink>");
+        codeCreator.AppendLine(@"                    <NavbarMobileLink Route=""Table"">");
+        codeCreator.AppendLine(@"                        Table");
+        codeCreator.AppendLine(@"                    </NavbarMobileLink>");
+        codeCreator.AppendLine(@"                    <NavbarMobileLink Route=""Icons"">");
+        codeCreator.AppendLine(@"                        Icons");
+        codeCreator.AppendLine(@"                    </NavbarMobileLink>");
+        codeCreator.AppendLine(@"                    <NavbarMobileLink Route=""Forms"">");
+        codeCreator.AppendLine(@"                        Forms");
+        codeCreator.AppendLine(@"                    </NavbarMobileLink>");
+        codeCreator.AppendLine(@"                    <NavbarMobileLink Route=""Modals"">");
+        codeCreator.AppendLine(@"                        Modals");
+        codeCreator.AppendLine(@"                    </NavbarMobileLink>");
+        codeCreator.AppendLine(@"                    <NavbarMobileLink Route=""Notifications"">");
+        codeCreator.AppendLine(@"                        Notifications");
+        codeCreator.AppendLine(@"                    </NavbarMobileLink>");
+        codeCreator.AppendLine(@"                </div>");
+        codeCreator.AppendLine(@"            </MobileNavigationFragment>");
+        codeCreator.AppendLine(@"        </Navbar>");
+        codeCreator.AppendLine(@"        <div class=""py-6 px-6"">");
+        codeCreator.AppendLine(@"            @Body");
+        codeCreator.AppendLine(@"        </div>");
+        codeCreator.AppendLine(@"    </div>");
+        codeCreator.AppendLine(@"</main>");
+
+        _navigationCode = codeCreator.ToString();
+        codeCreator.Clear();
+    }
 }

@@ -11,5 +11,8 @@ namespace WindyUI.Navigation
     {
         [Parameter]
         public NavigationColors Color { get; set; }
+
+        [Parameter]
+        public string CssClass { get; set; } = "";
     }
 }

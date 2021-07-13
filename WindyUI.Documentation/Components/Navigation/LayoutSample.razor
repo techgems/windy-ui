@@ -3,7 +3,7 @@
 
 <main class="grid md:grid-cols-5 h-full">
     <!--Sidebar-->
-    <Sidebar Color="Navigation.NavigationColors.Primary" CssClass="md:col-span-1">
+    <Sidebar Color="NavigationColors.Primary" CssClass="md:col-span-1">
         <BrandingFragment>
             <div class="p-4 mr-1">
                 <img class="hidden md:block h-16 w-auto ml-4" src="/img/logos/Isologotipo-Invertido.svg" alt="Logo">
@@ -23,7 +23,7 @@
     </Sidebar>
     <div class="md:col-start-2 md:col-span-4">
         <!--Header-->
-        <Navbar Color="Navigation.NavigationColors.PrimaryDark">
+        <Navbar Color="NavigationColors.PrimaryDark">
             <MobileBrandingFragment>
                 <img class="flex md:hidden h-10 w-auto" src="/img/logos/Isotipo-Invertido.svg" alt="Logo">
             </MobileBrandingFragment>
@@ -39,24 +39,6 @@
                         <NavbarLink Route="/Typography">
                             Typography
                         </NavbarLink>
-                        <NavbarLink Route="/Buttons">
-                            Buttons
-                        </NavbarLink>
-                        <NavbarLink Route="/Table">
-                            Table
-                        </NavbarLink>
-                        <NavbarLink Route="/Icons">
-                            Icons
-                        </NavbarLink>
-                        <NavbarLink Route="/Forms">
-                            Forms
-                        </NavbarLink>
-                        <NavbarLink Route="/Modals">
-                            Modals
-                        </NavbarLink>
-                        <NavbarLink Route="/Notifications">
-                            Notifications
-                        </NavbarLink>
                     </div>
                 </div>
             </BrandingFragment>
@@ -68,30 +50,12 @@
                     <NavbarMobileLink Route="/Typography">
                         Typography
                     </NavbarMobileLink>
-                    <NavbarMobileLink Route="/Buttons">
-                        Buttons
-                    </NavbarMobileLink>
-                    <NavbarMobileLink Route="/Table">
-                        Table
-                    </NavbarMobileLink>
-                    <NavbarMobileLink Route="/Icons">
-                        Icons
-                    </NavbarMobileLink>
-                    <NavbarMobileLink Route="/Forms">
-                        Forms
-                    </NavbarMobileLink>
-                    <NavbarMobileLink Route="/Modals">
-                        Modals
-                    </NavbarMobileLink>
-                    <NavbarMobileLink Route="/Notifications">
-                        Notifications
-                    </NavbarMobileLink>
                 </div>
             </MobileNavigationFragment>
         </Navbar>
         <!--Page content-->
         <div class="py-6 px-6">
-            @Body
+            Your content here.
         </div>
     </div>
 </main>
