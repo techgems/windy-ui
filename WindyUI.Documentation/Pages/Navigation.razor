@@ -28,6 +28,79 @@
     </CodeContent>
 </ExtendedCodeTabToggle>
 
+<Paragraph>
+    That was a lot of code, let's explain a little bit what is going on. We'll start with the top level components:
+</Paragraph>
+
+<Header HeaderType="HeaderTypes.H3">Navbar</Header>
+
+<Paragraph>
+    The idea behind this component is for it to be flexible while also being opinionated for simple use cases.
+    Any navbar to be used must be able to look properly when being used on mobile as well as on desktop. 
+</Paragraph>
+
+<Header HeaderType="HeaderTypes.H4">Parameters</Header>
+
+<ul>
+    <li>
+        BrandingFragment: 
+        <div>
+            This is fragment is meant to contain any element that is left aligned where branding is in most navbars.
+        </div>
+    </li>
+    <li>
+        MobileBrandingFragment:
+        <div>
+            The branding fragment on mobile aligns any branding markup inside it to the center of the navbar when in mobile.
+        </div>
+    </li>
+    <li>
+        NavigationFragment
+        <div>
+            The navigation fragment is meant for links and navigational elements for the application or website. As is common convention, it aligns all elements to the right of the sidebar.
+        </div>
+    </li>
+    <li>
+        MobileNavigationFragment
+        <div>
+            The mobile counterpart to NavigationFragment. By common convention, it displays only when the hamburger menu is open and it is displayed right below the navbar in mobile.
+        </div>
+    </li>
+    <li>
+        OnMobileMenuClick
+        <div>
+            An optional event that can be added to the clicking of the hamburger menu. This does not override the common behaviour of opening the MobileNavigationFragment, instead it just allows you to add additional capacity to said action should it be needed.
+        </div>
+    </li>
+    <li>
+        HasMobileMenu
+        <div>
+            True by default. This parameter is meant to be used only when you want to disable the mobile menu if you have no need for it.
+        </div>
+    </li>
+</ul>
+
+<Header HeaderType="HeaderTypes.H4">Navbar Link</Header>
+
+<Paragraph>
+    This component also uses the 'NavbarLink' subcomponent which can only be used inside it,
+    this is meant for compatibility with the color configuration you do when you set up your project.
+    NavbarLink knows which is the background color used by Navbar to be able to adjust automatically so that there are no color clashes.
+    But if the default is not what is intended, it can be overriden so that it uses a different background color as base. 
+</Paragraph>
+
+<Header HeaderType="HeaderTypes.H3">Sidebar</Header>
+
+<Paragraph></Paragraph>
+
+<Header HeaderType="HeaderTypes.H4">Parameters</Header>
+
+<ul>
+    <li></li>
+</ul>
+
+<Header HeaderType="HeaderTypes.H4">Sidebar Link</Header>
+
 @code {
     private string _navigationCode;
 
