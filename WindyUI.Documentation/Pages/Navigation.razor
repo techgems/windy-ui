@@ -43,6 +43,12 @@
 
 <ul>
     <li>
+        Color:
+        <div>
+            Allows you to decide a background color based on the config for the library.
+        </div>
+    </li>
+    <li>
         BrandingFragment: 
         <div>
             This is fragment is meant to contain any element that is left aligned where branding is in most navbars.
@@ -83,7 +89,7 @@
 <Header HeaderType="HeaderTypes.H4">Navbar Link</Header>
 
 <Paragraph>
-    This component also uses the 'NavbarLink' subcomponent which can only be used inside it,
+    Navbar also uses the 'NavbarLink' subcomponent which can only be used inside it,
     this is meant for compatibility with the color configuration you do when you set up your project.
     NavbarLink knows which is the background color used by Navbar to be able to adjust automatically so that there are no color clashes.
     But if the default is not what is intended, it can be overriden so that it uses a different background color as base. 
@@ -91,15 +97,42 @@
 
 <Header HeaderType="HeaderTypes.H3">Sidebar</Header>
 
-<Paragraph></Paragraph>
+<Paragraph>
+    A simple sidebar navigation component. At the time of writing, this component is only optimized to work on desktop. 
+    It contains space for branding and navigation also a 'SidebarLink' component that adapts to the background color of the sidebar.
+</Paragraph>
 
 <Header HeaderType="HeaderTypes.H4">Parameters</Header>
 
 <ul>
-    <li></li>
+    <li>
+        Color:
+        <div>
+            Allows you to decide a background color based on the config for the library.
+        </div>
+    </li>
+    <li>
+        BrandingFragment:
+        <div>
+            Fragment to display branding information on the top of the sidebar.
+        </div>
+    </li>
+    <li>
+        NavigationFragment:
+        <div>
+            Fragment to display all the navigation elements meant to be used in the sidebar component.
+        </div>
+    </li>
 </ul>
 
 <Header HeaderType="HeaderTypes.H4">Sidebar Link</Header>
+
+<Paragraph>
+    Sidebar also uses the 'SidebarLink' subcomponent which can only be used inside it.
+    This is meant for compatibility with the color configuration you do when you set up your project.
+    SidebarLink knows which is the background color used by Navbar to be able to adjust automatically so that there are no color clashes.
+    Base background color can be overriden so that it uses a different background color as base if you'd like it to do that.
+</Paragraph>
 
 @code {
     private string _navigationCode;
