@@ -40,8 +40,6 @@
     Any navbar to be used must be able to look properly when being used on mobile as well as on desktop.
 </Paragraph>
 
-Code example here...
-
 <Header HeaderType="HeaderTypes.H4">Parameters</Header>
 
 <Table CssClass="mb-10">
@@ -111,6 +109,10 @@ Code example here...
     </TableBody>
 </Table>
 
+<Header HeaderType="HeaderTypes.H4">Example</Header>
+
+<CodeHighlights CssClass="mb-8" Code="@_navbarExample" Language="@SupportedLanguages.Razor" />
+
 <Header HeaderType="HeaderTypes.H4">Navbar Link</Header>
 
 <Paragraph>
@@ -120,7 +122,7 @@ Code example here...
     But if the default is not what is intended, it can be overriden so that it uses a different background color as base.
 </Paragraph>
 
-Code example here...
+<CodeHighlights CssClass="mb-8" Code="@_navbarLinkExample" Language="@SupportedLanguages.Razor" />
 
 <Header HeaderType="HeaderTypes.H3">Sidebar</Header>
 
@@ -128,8 +130,6 @@ Code example here...
     A simple sidebar navigation component. At the time of writing, this component is only optimized to work on desktop.
     It contains space for branding and navigation also a 'SidebarLink' component that adapts to the background color of the sidebar.
 </Paragraph>
-
-Code example here...
 
 <Header HeaderType="HeaderTypes.H4">Parameters</Header>
 
@@ -165,6 +165,10 @@ Code example here...
     </TableBody>
 </Table>
 
+<Header HeaderType="HeaderTypes.H4">Example</Header>
+
+<CodeHighlights CssClass="mb-8" Code="@_sidebarExample" Language="@SupportedLanguages.Razor" />
+
 <Header HeaderType="HeaderTypes.H4">Sidebar Link</Header>
 
 <Paragraph>
@@ -174,10 +178,14 @@ Code example here...
     Base background color can be overriden so that it uses a different background color as base if you'd like it to do that.
 </Paragraph>
 
-Code example here...
+<CodeHighlights CssClass="mb-8 mt-4" Code="@_sidebarLinkExample" Language="@SupportedLanguages.Razor" />
 
 @code {
     private string _navigationCode;
+    private string _navbarLinkExample;
+    private string _sidebarLinkExample;
+    private string _sidebarExample;
+    private string _navbarExample;
 
     protected override void OnInitialized()
     {
@@ -278,6 +286,73 @@ Code example here...
         codeCreator.AppendLine(@"</main>");
 
         _navigationCode = codeCreator.ToString();
+        codeCreator.Clear();
+
+        codeCreator.AppendLine(@"<Navbar Color=""Navigation.NavigationColors.PrimaryDark"">");
+        codeCreator.AppendLine(@"   <MobileBrandingFragment>");
+        codeCreator.AppendLine(@"       <img class=""flex md:hidden h-10 w-auto"" src=""/img/logos/Isotipo-Invertido.svg"" alt=""Logo"">");
+        codeCreator.AppendLine(@"   </MobileBrandingFragment>");
+        codeCreator.AppendLine(@"   <BrandingFragment>");
+        codeCreator.AppendLine(@"       <div class=""hidden lg:block md:ml-6"">");
+        codeCreator.AppendLine(@"           <div class=""flex lg:space-x-1 xl:space-x-4"">");
+        codeCreator.AppendLine(@"               <NavbarLink Route=""RouteOne"">");
+        codeCreator.AppendLine(@"                   Route One");
+        codeCreator.AppendLine(@"               </NavbarLink>");
+        codeCreator.AppendLine(@"               <NavbarLink Route=""RouteTwo"">");
+        codeCreator.AppendLine(@"                   Route Two");
+        codeCreator.AppendLine(@"               </NavbarLink>");
+        codeCreator.AppendLine(@"               <NavbarLink Route=""RouteThree"">");
+        codeCreator.AppendLine(@"                   Route Three");
+        codeCreator.AppendLine(@"               </NavbarLink>");
+        codeCreator.AppendLine(@"           </div>");
+        codeCreator.AppendLine(@"       </div>");
+        codeCreator.AppendLine(@"   </BrandingFragment>");
+        codeCreator.AppendLine(@"   <MobileNavigationFragment>");
+        codeCreator.AppendLine(@"       <div class=""px-2 pt-2 pb-3 md:space-y-1"">");
+        codeCreator.AppendLine(@"           <NavbarMobileLink Route=""RouteOne"">");
+        codeCreator.AppendLine(@"               Route One");
+        codeCreator.AppendLine(@"           </NavbarMobileLink>");
+        codeCreator.AppendLine(@"           <NavbarMobileLink Route=""RouteTwo"">");
+        codeCreator.AppendLine(@"               Route Two");
+        codeCreator.AppendLine(@"           </NavbarMobileLink>");
+        codeCreator.AppendLine(@"           <NavbarMobileLink Route=""RouteThree"">");
+        codeCreator.AppendLine(@"               Route Three");
+        codeCreator.AppendLine(@"           </NavbarMobileLink>");
+        codeCreator.AppendLine(@"       </div>");
+        codeCreator.AppendLine(@"   </MobileNavigationFragment>");
+        codeCreator.AppendLine(@"</Navbar>");
+        _navbarExample = codeCreator.ToString();
+        codeCreator.Clear();
+
+        codeCreator.AppendLine(@"<Sidebar Color=""Navigation.NavigationColors.Primary"" CssClass=""md:col-span-1"">");
+        codeCreator.AppendLine(@"   <BrandingFragment>");
+        codeCreator.AppendLine(@"       <div class=""p-4 mr-1"">");
+        codeCreator.AppendLine(@"           <img class=""hidden md:block h-16 w-auto ml-4"" src=""/img/logos/Isologotipo-Invertido.svg"" alt=""Logo"">");
+        codeCreator.AppendLine(@"       </div>");
+        codeCreator.AppendLine(@"   </BrandingFragment>");
+        codeCreator.AppendLine(@"   <NavigationFragment>");
+        codeCreator.AppendLine(@"       <SidebarLink Route=""RouteOne"">Route One</SidebarLink>");
+        codeCreator.AppendLine(@"       <SidebarLink Route=""RouteTwo"">Route Two</SidebarLink>");
+        codeCreator.AppendLine(@"       <SidebarLink Route=""RouteThree"">Route Three</SidebarLink>");
+        codeCreator.AppendLine(@"   </NavigationFragment>");
+        codeCreator.AppendLine(@"</Sidebar>");
+        _sidebarExample = codeCreator.ToString();
+        codeCreator.Clear();
+
+        codeCreator.AppendLine(@"//To be used only inside the NavigationFragment.");
+        codeCreator.AppendLine(@"<NavbarLink Route=""RouteOne"">");
+        codeCreator.AppendLine(@"   Route One");
+        codeCreator.AppendLine(@"</NavbarLink>");
+        codeCreator.AppendLine();
+        codeCreator.AppendLine(@"//To be used only inside the MobileNavigationFragment.");
+        codeCreator.AppendLine(@"<NavbarMobileLink Route=""RouteOne"">");
+        codeCreator.AppendLine(@"   Route One");
+        codeCreator.AppendLine(@"</NavbarMobileLink>");
+        _navbarLinkExample = codeCreator.ToString();
+        codeCreator.Clear();
+
+        codeCreator.AppendLine(@"<SidebarLink Route=""RouteThree"">Route Three</SidebarLink>");
+        _sidebarLinkExample = codeCreator.ToString();
         codeCreator.Clear();
     }
 }
