@@ -5,7 +5,7 @@
   "scripts": {
     "buildcss": "postcss 'Styles/site.css' -o '../wwwroot/css/site.min.css'"
   },
-  "devDependencies": {
+  "dependencies": {
     "@tailwindcss/forms": "^0.3.2",
     "autoprefixer": "^10.0.2",
     "postcss": "^8.2.1",

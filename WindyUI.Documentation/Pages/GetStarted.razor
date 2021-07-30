@@ -2,6 +2,21 @@
 
 <h3>GettingStarted</h3>
 
-@code {
+Step 1
 
-}
+Install nuget package to your blazor project: https://www.nuget.org/packages/TechGems.WindyUI/
+
+
+Step 2
+
+Go to https://github.com/techgems/windy-ui/tree/master/Starter/TailwindBuild and download the folder, then paste it into your project structure at the same level as wwwroot.
+
+Step 3
+
+Run npm install inside the "TailwindBuild" folder. Then run "npm run buildcss", this will generate a site.min.css inside wwwroot/css folder.
+
+Step 4
+
+Once that is done, make sure to reference the newly generated CSS file in your base HTML file in wwwroot. The library has no JS dependencies, so no need to add any.
+
+That's it! You can look into the different component pages to continue your learning on how to use the library.

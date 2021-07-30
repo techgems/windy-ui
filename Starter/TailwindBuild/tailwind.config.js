@@ -2,43 +2,19 @@ const colors = require('tailwindcss/colors');
 
 //Generated with: https://tailwind.ink/
 const customColors = {
-    pine: {
-        '50': '#eef5f5',
-        '100': '#ceeff4',
-        '200': '#97e5e6',
-        '300': '#49d9e8',
-        '400': '#26ada1',
-        '500': '#1b927c',
-        '600': '#187b63',
-        '700': '#175e4e',
-        '800': '#12413a',
-        '900': '#0c282b',
+    primary: {
+        'text': 'your color here',
+        'light': 'your color here',
+        'default': 'your color here',
+        'dark': 'your color here'
     },
-    olive: {
-        '50': '#fbfaf4',
-        '100': '#f8efbd',
-        '200': '#f0dd83',
-        '300': '#d9b951',
-        '400': '#b98f2c',
-        '500': '#9a7016',
-        '600': '#7d560e',
-        '700': '#60410d',
-        '800': '#412d0b',
-        '900': '#2c1c09',
-    },
-    seagreen: {
-        '50': '#f3f6f4',
-        '100': '#e0efea',
-        '200': '#b9e4d1',
-        '300': '#81c8a5',
-        '400': '#3fa776',
-        '500': '#2c8b4e',
-        '600': '#26743a',
-        '700': '#21582f',
-        '800': '#183d24',
-        '900': '#11261b',
+    secondary: {
+        'text': 'your color here',
+        'light': 'your color here',
+        'default': 'your color here',
+        'dark': 'your color here'
     }
-}
+};
 
 module.exports = {
     purge: [],
@@ -60,17 +36,18 @@ module.exports = {
         },
         extend: {
             colors: {
-                primary: {
-                    text: 'white',
-                    light: customColors.pine['100'],
-                    DEFAULT: customColors.pine['400'],
-                    dark: customColors.pine['500']
+                /*Define your colors here:*/
+				primary: {
+                    text: customColors.primary['text'],
+                    light: customColors.primary['light'],
+                    DEFAULT: customColors.primary['default'],
+                    dark: customColors.primary['dark']
                 },
                 secondary: {
-                    text: 'white',
-                    light: customColors.olive['200'],
-                    DEFAULT: customColors.olive['400'],
-                    dark: customColors.olive['500']
+                    text: customColors.secondary['text'],
+                    light: customColors.secondary['light'],
+                    DEFAULT: customColors.secondary['default'],
+                    dark: customColors.secondary['dark']
                 },
                 success: {
                     text: 'white',
