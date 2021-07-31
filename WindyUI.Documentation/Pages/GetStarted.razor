@@ -1,22 +1,59 @@
 ﻿@page "/GetStarted"
 
-<h3>GettingStarted</h3>
+@using WindyUI.Typography;
+@using WindyUI.Documentation.Components;
+@using System.Text;
 
-Step 1
+<div class="ml-6">
+    <Header HeaderType="HeaderTypes.H3">Getting Started</Header>
 
-Install nuget package to your blazor project: https://www.nuget.org/packages/TechGems.WindyUI/
+    <Header HeaderType="HeaderTypes.H5">Nuget Package</Header>
+
+    <Paragraph>
+        Install the <a href="https://www.nuget.org/packages/TechGems.WindyUI/" target="_blank">nuget package</a> to your blazor project.
+    </Paragraph>
+
+    <CodeHighlights CssClass="mb-6" Code="@_nugetInstall" Language="SupportedLanguages.HTML" />
+
+    <Header HeaderType="HeaderTypes.H5">Tailwind Starter Config</Header>
+
+    <Paragraph>
+        Go <a href="https://github.com/techgems/windy-ui/tree/master/Starter/TailwindBuild" target="_blank">here</a> and download the folder, then paste it into your project structure at the same level as wwwroot.
+    </Paragraph>
+
+    <Header HeaderType="HeaderTypes.H5">NPM Setup</Header>
+
+    <Paragraph>
+        Run npm install inside the <span class="bg-yellow-100">TailwindBuild</span> folder. Then run:
+    </Paragraph>
+
+    <CodeHighlights CssClass="mb-6" Code="  npm run buildcss" Language="SupportedLanguages.HTML" />
+
+    <Paragraph>
+        This will generate a <span class="bg-yellow-100">site.min.css</span> file inside <span class="bg-yellow-100">wwwroot/css</span> folder.
+    </Paragraph>
+
+    <Header HeaderType="HeaderTypes.H5">Final steps</Header>
+
+    <Paragraph>
+        Once that is done, make sure to reference the newly generated CSS file in your base HTML file in <span class="bg-yellow-100">wwwroot</span>. The library has no JS dependencies, so no need to add any for this setup.
+        That's it! You can look into the different component pages to continue your learning on how to use the library.
+    </Paragraph>
+</div>
+
+@code {
+    private string _nugetInstall;
+
+    protected override void OnInitialized()
+    {
+        StringBuilder codeCreator = new StringBuilder();
+        codeCreator.AppendLine(@"   //Nuget package manager");
+        codeCreator.AppendLine(@"   Install-Package TechGems.WindyUI -Version 0.1.0");
+        codeCreator.AppendLine();
+        codeCreator.AppendLine(@"   //.NET CLI");
+        codeCreator.AppendLine(@"   dotnet add package TechGems.WindyUI --version 0.1.0");
 
 
-Step 2
-
-Go to https://github.com/techgems/windy-ui/tree/master/Starter/TailwindBuild and download the folder, then paste it into your project structure at the same level as wwwroot.
-
-Step 3
-
-Run npm install inside the "TailwindBuild" folder. Then run "npm run buildcss", this will generate a site.min.css inside wwwroot/css folder.
-
-Step 4
-
-Once that is done, make sure to reference the newly generated CSS file in your base HTML file in wwwroot. The library has no JS dependencies, so no need to add any.
-
-That's it! You can look into the different component pages to continue your learning on how to use the library.
+        _nugetInstall = codeCreator.ToString();
+    }
+}
