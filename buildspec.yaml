@@ -14,4 +14,5 @@ phases:
         
 artifacts:
   files: 
-    - 'publish/wwwroot/*'
+    - '**/*'
+  base-directory: 'publish/wwwroot'
