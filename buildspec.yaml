@@ -7,6 +7,7 @@ phases:
       - cd WindyUI.Documentation/TailwindBuild
       - npm install
       - npm run buildcss
+      - cd ../..
   build:
     commands:
       - dotnet publish -o publish
