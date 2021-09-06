@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WindyUI.Form.EditForm
+namespace WindyUI.Form
 {
     public class CustomValidator : ComponentBase
     {

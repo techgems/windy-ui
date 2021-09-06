@@ -8,6 +8,8 @@
 @using WindyUI.Modals;
 @using System.Text;
 
+@inject IJSRuntime JsRuntime
+
 <Header HeaderType="HeaderTypes.H2">Modals</Header>
 
 <Paragraph>
@@ -203,8 +205,9 @@
         FormModalRef.Open();
     }
 
-    public void FormModalOnClose()
+    public async Task FormModalOnClose()
     {
+        await JsRuntime.InvokeVoidAsync("alert", "Modal is now closing.");
         //Action to execute on close.
     }
 

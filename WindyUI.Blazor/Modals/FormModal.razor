@@ -27,8 +27,8 @@
                 </ModalContent>
                 <ModalFooter>
                     <div>
-                        <Button OnClick="Close" Color="ButtonColors.Primary" Type="ButtonTypes.Outlined">
-                            @(string.IsNullOrWhiteSpace(CancelButtonText) ? @_defaultCancelButtonText : CancelButtonText)
+                        <Button OnClick="CloseModal" Color="ButtonColors.Primary" Type="ButtonTypes.Outlined">
+                            @(string.IsNullOrWhiteSpace(CancelButtonText) ? _defaultCancelButtonText : CancelButtonText)
                         </Button>
                         <Button FormId="@FormId" Color="ButtonColors.Primary" Type="ButtonTypes.Contained">
                             @(string.IsNullOrWhiteSpace(AcceptButtonText) ? _defaultAcceptButtonText : CancelButtonText)
@@ -64,5 +64,11 @@
 
     [Parameter]
     public string? CancelButtonText { get; set; }
+
+    private void CloseModal()
+    {
+        base.Close();
+        OnClose.InvokeAsync();
+    }
 
 }

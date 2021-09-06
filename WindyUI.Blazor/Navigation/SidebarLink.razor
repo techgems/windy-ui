@@ -1,10 +1,8 @@
-﻿@using WindyUI.Base;
-@inherits BaseNavigationLink;
+﻿@inherits BaseNavigationLink;
 
-<NavLink href="@Route" ActiveClass="@ActiveColorClass" class="@InactiveClass" Match="NavLinkMatch.Prefix">
+<NavLink href="@Route" ActiveClass="@ActiveColorClass" class="@DefinedClass" Match="NavLinkMatch.Prefix">
     @ChildContent
 </NavLink>
-
 
 @code {
     private string DefinedClass { get { return $"{InactiveClass} {CssClass}"; } }
