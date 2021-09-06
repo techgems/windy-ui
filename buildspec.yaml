@@ -2,14 +2,17 @@ version: 0.2
 
 phases:
   install:
-    runtime-versions:
-      dotnet: 5.0
     commands:
       - dotnet restore
+      - cd WindyUI.Documentation/TailwindBuild
+      - npm install
+      - npm run buildcss
+      - cd ../..
   build:
     commands:
       - dotnet publish -o publish
         
 artifacts:
   files: 
-    - 'publish/**/*'
+    - '**/*'
+  base-directory: 'publish/wwwroot'
